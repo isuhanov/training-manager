@@ -48,9 +48,14 @@ export const Title = styled.h1`
 `;
 
 export const SubTitle = styled.h2`
-    font-size: 25px;
+    font-size: 27px;
     font-weight: 700;
     color: ${({ theme }) => theme.colors.font};
+`;
+
+export const SectionTitle = styled.div`
+    margin: 20px 0 10px;
+    text-align: center;
 `;
 
 export const  Nav = styled.nav`
@@ -104,8 +109,8 @@ export const Button = styled.button<IButton>`
 
 export const Icon = styled.span<IIcon>`
     svg {
-        width: ${({ width = '30px'}) => width};
-        height: ${({ height = '30px'}) => height};
+        width: ${({ width = '40px'}) => width};
+        height: ${({ height = '40px'}) => height};
         fill: ${({ theme }) => theme.colors.font};
     }
 `;
@@ -118,9 +123,23 @@ export const Main = styled.main`
 `;
 
 export const Record = styled(FlexContainer)`
-    width: 45%;
+    width: 40%;
     height: 120px;
+    padding: 8px 10px;
     border-radius: 5px;
     box-shadow: 8px 8px 20px 0px #1E1E1E;
     background-color: ${({ theme }) => theme.colors.bg};
+`;
+
+export const RecordParametr = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+`;
+
+export const RecordParametrVal = styled.span`
+    font-size: 16px;
+    font-weight: 700;
+    color: ${({ theme }) => theme.colors.font};
 `;

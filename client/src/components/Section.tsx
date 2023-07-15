@@ -10,7 +10,9 @@ interface ISectionProps {
 const Section = ({ children, title }: ISectionProps) => {
     return (
         <>
-            <S.SubTitle>{ title }</S.SubTitle>
+            <S.SectionTitle>
+                <S.SubTitle>{ title }</S.SubTitle>
+            </S.SectionTitle>
             { children }
         </>
     );

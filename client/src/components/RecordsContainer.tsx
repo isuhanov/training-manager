@@ -7,7 +7,10 @@ import { Justify, Wrap } from '../ts/enums/flex';
 
 const RecordsContainer = () => {
     return (
-        <S.FlexContainer wrap={Wrap.Wrap} justify={Justify.SpaceBetween} gap='30px' padding='25px 40px'>
+        <S.FlexContainer wrap={Wrap.Wrap} justify={Justify.Center} gap='30px 100px' padding='25px 40px'>
+            <Record />
+            <Record />
+            <Record />
             <Record />
         </S.FlexContainer>
     );
