@@ -1,4 +1,5 @@
 import * as S from '../styles/components';
+import { Justify } from '../ts/enums/flex';
 import NavBar from './NavBar';
 
 
@@ -8,7 +9,7 @@ const Header = () => {
         <S.Header>
             <S.Container>
                 <S.FlexContainer>
-                    <S.FlexContainer justify='flex-start' gap='10px'>
+                    <S.FlexContainer justify={Justify.Start} gap='10px'>
                         <S.Title>Training-manager</S.Title>
                     </S.FlexContainer>
 

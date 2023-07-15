@@ -1,7 +1,10 @@
 import { styled } from "styled-components";
 import { NavLink } from "react-router-dom";
 
-import { IButton, IFlexContainer, IIcon } from "./interface";
+import { Direction, Wrap } from "../ts/enums/flex";
+import { IFlexContainer } from "../ts/interfaces/styles/flex-container";
+import { IButton } from "../ts/interfaces/styles/button";
+import { IIcon } from "../ts/interfaces/styles/icon";
 
 export const Container = styled.div`
     width: 100%;
@@ -18,9 +21,9 @@ export const Container = styled.div`
 export const FlexContainer = styled.div<IFlexContainer>`
     width: 100%;
     display: flex;
-    flex-direction: ${({ direction = 'row' }) => direction};
+    flex-direction: ${({ direction = Direction.Row }) => direction};
     align-items: ${({ align = 'center' }) => align};
-    flex-wrap: ${({ wrap = 'nowrap' }) => wrap};
+    flex-wrap: ${({ wrap = Wrap.Nowrap }) => wrap};
     justify-content: ${({ justify = 'center' }) => justify};
     gap: ${({ gap = '0px' }) => gap};
     padding: ${({ padding = '0px' }) => padding};
@@ -56,9 +59,9 @@ export const  Nav = styled.nav`
 
 export const NavMenu = styled.ul<IFlexContainer>`
     display: flex;
-    flex-direction: ${({ direction = 'row' }) => direction};
+    flex-direction: ${({ direction = Direction.Row }) => direction};
     align-items: ${({ align = 'center' }) => align};
-    flex-wrap: ${({ wrap = 'nowrap' }) => wrap};
+    flex-wrap: ${({ wrap = Wrap.Nowrap }) => wrap};
     justify-content: ${({ justify = 'center' }) => justify};
     gap: ${({ gap = '0px' }) => gap};
     padding: ${({ padding = '0px' }) => padding};

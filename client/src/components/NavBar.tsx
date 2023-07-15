@@ -1,13 +1,14 @@
 import * as S from '../styles/components';
 
 import { ReactComponent as Add } from '../assets/icons/add.svg';
+import { Justify } from '../ts/enums/flex';
 
 
 const NavBar = () => {
 
     return (
         <S.Nav>
-            <S.NavMenu gap='15px' justify='flex-end'>
+            <S.NavMenu gap='15px' justify={Justify.FlexEnd}>
                 <S.NavItem>
                     <S.NavItemLink to={'/'} className={({isActive}) => isActive ? 'active' : ''} >
                         Записи
