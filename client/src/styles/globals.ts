@@ -44,13 +44,13 @@ export default createGlobalStyle`
 	}
 	
 	*::-webkit-scrollbar {
-		height: 5px;
-		width: 5px;
+		height: 8px;
+		width: 8px;
 		border-radius: 10px;
 	}
-	*::-webkit-scrollbar-track { background: white; }
+	*::-webkit-scrollbar-track { background: ${({ theme }) => theme.colors.bgSecondary}; }
 	*::-webkit-scrollbar-thumb {
-		background-color: rgba(192, 191, 191, 0.586);
+		background-color: ${({ theme }) => theme.colors.scroll};
 		border-radius: 10px;
 	}
 	

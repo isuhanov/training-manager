@@ -6,5 +6,6 @@ export const theme = {
         font: '#FFFFFF',
         bg: '#202020',
         bgSecondary: '#2C2C2C',
+        scroll: '#474747'
     },
 }

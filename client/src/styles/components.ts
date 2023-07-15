@@ -26,15 +26,26 @@ export const FlexContainer = styled.div<IFlexContainer>`
     padding: ${({ padding = '0px' }) => padding};
 `;
 
+export const Body = styled(FlexContainer)`
+    height: 100vh;
+`;
+
 export const Header = styled(FlexContainer)`
     width: 100%;
     height: 100px;
+    min-height: 100px;
     box-shadow: 0px 8px 8px 0px rgba(0, 0, 0, 0.33);
     background-color: ${({ theme }) => theme.colors.bg};
 `;
 
 export const Title = styled.h1`
     font-size: 27px;
+    font-weight: 700;
+    color: ${({ theme }) => theme.colors.font};
+`;
+
+export const SubTitle = styled.h2`
+    font-size: 25px;
     font-weight: 700;
     color: ${({ theme }) => theme.colors.font};
 `;
@@ -94,4 +105,19 @@ export const Icon = styled.span<IIcon>`
         height: ${({ height = '30px'}) => height};
         fill: ${({ theme }) => theme.colors.font};
     }
+`;
+
+export const Main = styled.main`
+    width: 100%;
+    padding: 30px 0 20px;
+    flex-grow: 2; 
+    overflow: auto;
+`;
+
+export const Record = styled(FlexContainer)`
+    width: 45%;
+    height: 120px;
+    border-radius: 5px;
+    box-shadow: 8px 8px 20px 0px #1E1E1E;
+    background-color: ${({ theme }) => theme.colors.bg};
 `;
