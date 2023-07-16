@@ -25,11 +25,13 @@ const NavBar = () => {
                     </S.NavItemLink>
                 </S.NavItem>
                 <S.NavItem>
-                    <S.Button>
-                        <S.Icon width='20px' height='20px'>
-                            <Add />
-                        </S.Icon>
-                    </S.Button>
+                    <S.NavItemLink to={'/add'}>
+                        <S.Button>
+                            <S.Icon width='20px' height='20px'>
+                                <Add />
+                            </S.Icon>
+                        </S.Button>
+                    </S.NavItemLink>
                 </S.NavItem>
             </S.NavMenu>
         </S.Nav>

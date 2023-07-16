@@ -1,17 +1,18 @@
+import { Route, Routes } from 'react-router-dom';
 import * as S from '../styles/components';
 
-import RecordsContainer from './records/RecordsContainer';
-import Section from './Section';
+import RecordsPage from '../pages/RecordsPage';
+import AddRecordPage from '../pages/AddRecordPage';
 
 
 const Main = () => {
-
     return (
         <S.Main>
             <S.Container>
-                <Section title="Записи">
-                    <RecordsContainer />
-                </Section>                
+                <Routes>
+                    <Route path='/' element={ <RecordsPage /> }/>
+                    <Route path='/add' element={ <AddRecordPage /> }/>
+                </Routes>                
             </S.Container>
         </S.Main>
     );

@@ -1,7 +1,6 @@
-import { useEffect } from 'react';
 import * as S from '../../styles/components';
 
-import { Align, Direction, Justify } from '../../ts/enums/flex';
+import { Justify } from '../../ts/enums/flex';
 import { IRecord } from '../../ts/interfaces/globals/record';
 import RecordIcon from './RecordIcon';
 import RecordParametr from './RecordParametr';

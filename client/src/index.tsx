@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -14,10 +16,12 @@ const root = ReactDOM.createRoot(
 root.render(
 	<React.StrictMode>
 		<ThemeProvider theme={theme}>
+		<LocalizationProvider dateAdapter={AdapterDayjs}>
 			<GlobalStyles />
 			<BrowserRouter>
 				<App />
 			</BrowserRouter>
+		</LocalizationProvider>
 		</ThemeProvider>
 	</React.StrictMode>
 );
