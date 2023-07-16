@@ -1,22 +1,25 @@
 import * as S from '../styles/components';
 
-import { ReactComponent as Running } from '../assets/icons/running.svg';
 import { Align, Direction, Justify } from '../ts/enums/flex';
+import { IRecord } from '../ts/interfaces/globals/record';
+import RecordIcon from './RecordIcon';
 import RecordParametr from './RecordParametr';
 
 
-const Record = () => {
+interface IRecordProps extends IRecord{}
+
+const Record = ({ training, time, results, repeats }: IRecordProps) => {    
     return (
         <S.Record justify={Justify.SpaceBetween}>
-            <S.Icon width='80px' height='80px'>
-                <Running />
-            </S.Icon>
+            <RecordIcon type={training} />
             <S.FlexContainer gap='5px' direction={Direction.Column} align={Align.Center} justify={Justify.SpaceBetween}>
                 <S.FlexContainer gap='10px' justify={Justify.Center}>
-                    <RecordParametr />
-                    <RecordParametr />
+                    <RecordParametr type={'time'} value={time}/>
+                    { training === 'strength' &&
+                        <RecordParametr type={'repeats'} value={repeats} />
+                    }
                 </S.FlexContainer>
-                <RecordParametr />
+                <RecordParametr type={'results'} value={results}/>
             </S.FlexContainer>  
         </S.Record>
     );
