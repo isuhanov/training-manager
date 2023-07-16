@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import * as S from '../../styles/components';
 
 import { Align, Direction, Justify } from '../../ts/enums/flex';
@@ -8,18 +9,22 @@ import RecordParametr from './RecordParametr';
 
 interface IRecordProps extends IRecord{}
 
-const Record = ({ training, time, results, repeats }: IRecordProps) => {    
+const Record = ({ id, training, time, result, repeats, date }: IRecordProps) => {    
+
     return (
         <S.Record justify={Justify.SpaceBetween}>
             <RecordIcon type={training} />
             <S.FlexContainer gap='5px' direction={Direction.Column} align={Align.Center} justify={Justify.SpaceBetween}>
                 <S.FlexContainer gap='10px' justify={Justify.Center}>
+                    <RecordParametr type={'date'} value={date} />
                     <RecordParametr type={'time'} value={time}/>
+                </S.FlexContainer>
+                <S.FlexContainer gap='10px' justify={Justify.Center}>
+                    <RecordParametr type={'result'} value={result}/>
                     { training === 'strength' &&
-                        <RecordParametr type={'repeats'} value={repeats} />
+                        <RecordParametr type={'repeats'} value={repeats || ''} />
                     }
                 </S.FlexContainer>
-                <RecordParametr type={'results'} value={results}/>
             </S.FlexContainer>  
         </S.Record>
     );

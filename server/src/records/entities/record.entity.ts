@@ -6,16 +6,16 @@ export class Record {
     id: number;
 
     @Column()
-    type: string;
+    training: string;
     
     @Column()
     time: string;
-    
+
     @Column()
-    result: number;
-    
-    @Column({ nullable: true })
-    repeats: number;
+    result: string
+
+    @Column({ nullable:true })
+    repeats: string;
 
     @CreateDateColumn()
     date: Date

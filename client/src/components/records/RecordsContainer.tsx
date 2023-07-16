@@ -1,45 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import * as S from '../../styles/components';
-import Record from './Record';
-import { Justify, Wrap } from '../../ts/enums/flex';
 import { IRecord } from '../../ts/interfaces/globals/record';
-
-const records: IRecord[] = [
-    {
-        training: 'running',
-        time: '00:30:03',
-        results: '0',
-    },
-    {
-        training: 'cycling',
-        time: '00:30:03',
-        results: '10',
-    },
-    {
-        training: 'cycling',
-        time: '00:30:03',
-        results: '10',
-    },
-    {
-        training: 'swimming',
-        time: '00:30:03',
-        results: '10',
-    },
-    {
-        training: 'strength',
-        time: '00:30:03',
-        results: '10',
-        repeats: '3'
-    }
-]
-
+import { Justify, Wrap } from '../../ts/enums/flex';
+import Record from './Record';
+import axios from 'axios';
 
 const RecordsContainer = () => {
+    const [records, setRecords] = useState<IRecord[]>([]);
+
+    useEffect(() => {
+        axios.get('http://localhost:4200/records').then(res => {
+            console.log(res.data);
+            setRecords(res.data)            
+        })
+    }, []);
+
     return (
         <S.FlexContainer wrap={Wrap.Wrap} justify={Justify.Center} gap='30px 100px' padding='25px 40px'>
             { records.map((record, index) => (
-                <Record  {...record} key={index} />
+                <Record  {...record} key={record.id} />
             )) }
         </S.FlexContainer>
     );

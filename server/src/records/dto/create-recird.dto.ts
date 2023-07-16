@@ -1,6 +1,6 @@
 export class CreateRecordDto {
-    readonly type: string;
+    readonly training: string;
     readonly time: string;
-    readonly result: number;
-    readonly repeats?: number;
+    readonly result: string;
+    readonly repeats?: string;
 }

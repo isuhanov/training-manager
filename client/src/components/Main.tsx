@@ -1,5 +1,6 @@
 import * as S from '../styles/components';
-import RecordsContainer from './RecordsContainer';
+
+import RecordsContainer from './records/RecordsContainer';
 import Section from './Section';
 
 

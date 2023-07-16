@@ -1,6 +1,8 @@
 export interface IRecord {
+    id: number;
     training: 'running' | 'swimming' | 'cycling' | 'strength';
     time: string;
-    results: string;
+    result: string;
     repeats?: string;
+    date: string;
 }

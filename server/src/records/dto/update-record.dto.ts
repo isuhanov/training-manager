@@ -1,8 +1,8 @@
 export class UpdateRecordDto {
     readonly id: number;
-    readonly type: string;
+    readonly training: string;
     readonly time: string;
-    readonly result: number;
-    readonly repeats?: number;
+    readonly result: string;
+    readonly repeats?: string;
     readonly date: Date;
 }
