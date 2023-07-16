@@ -109,8 +109,8 @@ export const Button = styled.button<IButton>`
 
 export const Icon = styled.span<IIcon>`
     svg {
-        width: ${({ width = '40px'}) => width};
-        height: ${({ height = '40px'}) => height};
+        width: ${({ width = '35px'}) => width};
+        height: ${({ height = '35px'}) => height};
         fill: ${({ theme }) => theme.colors.font};
     }
 `;
@@ -129,6 +129,13 @@ export const Record = styled(FlexContainer)`
     border-radius: 5px;
     box-shadow: 8px 8px 20px 0px #1E1E1E;
     background-color: ${({ theme }) => theme.colors.bg};
+`;
+
+export const RecordParametrContainer = styled.div`
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 10px;
 `;
 
 export const RecordParametr = styled.div`

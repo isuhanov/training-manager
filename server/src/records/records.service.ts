@@ -15,7 +15,11 @@ export class RecordsService {
     ) {}
 
     async getAll(): Promise<Record[]> {
-        return await this.recordRepository.find();
+        return await this.recordRepository.find({
+            order: {
+                date: "DESC",
+            },
+        });
     }
 
     async getById(id: number): Promise<Record> {

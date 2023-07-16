@@ -12,20 +12,16 @@ interface IRecordProps extends IRecord{}
 const Record = ({ id, training, time, result, repeats, date }: IRecordProps) => {    
 
     return (
-        <S.Record justify={Justify.SpaceBetween}>
+        <S.Record justify={Justify.SpaceBetween} gap='10px'>
             <RecordIcon type={training} />
-            <S.FlexContainer gap='5px' direction={Direction.Column} align={Align.Center} justify={Justify.SpaceBetween}>
-                <S.FlexContainer gap='10px' justify={Justify.Center}>
-                    <RecordParametr type={'date'} value={date} />
+            <S.RecordParametrContainer>
+                <RecordParametr type={'date'} value={date} />
                     <RecordParametr type={'time'} value={time}/>
-                </S.FlexContainer>
-                <S.FlexContainer gap='10px' justify={Justify.Center}>
                     <RecordParametr type={'result'} value={result}/>
                     { training === 'strength' &&
                         <RecordParametr type={'repeats'} value={repeats || ''} />
                     }
-                </S.FlexContainer>
-            </S.FlexContainer>  
+            </S.RecordParametrContainer>
         </S.Record>
     );
 }
