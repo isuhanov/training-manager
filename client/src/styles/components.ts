@@ -200,11 +200,6 @@ export const Input = styled.input`
 
 export const Select = styled.select`
     ${inputStyles}
-
-    option {
-        border-radius: 10px;
-        background-color: black;
-    }
 `; 
 
 export const StyledTimePicker = styled(TimePicker)`  
