@@ -215,3 +215,10 @@ export const StyledTimePicker = styled(TimePicker)`
         color:  ${({ theme }) => theme.colors.bg};
     }
 `;
+
+export const Error = styled.p`
+    font-size: 14px;
+    font-weight: 700;
+    margin: 15px;
+    color:  ${({ theme }) => theme.colors.primary};
+`;

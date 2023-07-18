@@ -4,7 +4,7 @@ import { Dayjs } from "dayjs";
 import { TimeValidationError } from "@mui/x-date-pickers";
 
 
-export interface ITimePickerField extends Omit<IDefaultField, 'value'> {
+export interface ITimePickerField extends IDefaultField{
     value: Dayjs | null;
     handleChange: (value: any, context: PickerChangeHandlerContext<TimeValidationError>) => void;
 }

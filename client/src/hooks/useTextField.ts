@@ -10,25 +10,40 @@ function useTextField(
     const [value, setValue] = useState(init);
     const [error, setError] = useState('');
 
+    const validate = useCallback((value: string): string => {
+        let err = ''
+        
+        if (validators.isDigital && !(/^[0-9]+$/.test(value))) {
+            err = 'Поле должно содержать только положительные числа';
+        } else if (validators.minLength && value.length < validators.minLength) {
+            err = `Минимальная длина = ${validators.minLength}`;
+        } else if (validators.maxLength && value.length > validators.maxLength) {
+            err = `Максимальная длина = ${validators.maxLength}`;
+        }
+        console.log(value);
+        console.log(err);
+        return err;
+    }, [validators]);
+
     const handleChange = useCallback((event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
         const newValue = event.target.value;
         setValue(newValue);
+        setError(validate(newValue));
+    }, [validate]);
 
-        if (validators.isDigital && !(/^[0-9]+$/.test(newValue))) {
-            setError('Поле должно содержать только положительные числа');
-            console.log('Поле должно содержать только положительные числа');
-        } else if (validators.maxLength && newValue.length > validators.maxLength) {
-            setError(`Минимальная длина = ${validators.minLength}`);
-        } else if (validators.maxLength && newValue.length > validators.maxLength) {
-            setError(`Максимальная длина = ${validators.maxLength}`);
-        }
-    }, [validators]);
+
+    const hasError = useCallback((): boolean => {
+        const err = validate(value);
+        setError(err);
+        return Boolean(err);
+    }, [value, validate]);
 
     return {
         id,
         value,
         error,
-        handleChange
+        hasError,
+        handleChange,
     }
 }
 

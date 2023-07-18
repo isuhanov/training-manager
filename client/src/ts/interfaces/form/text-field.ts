@@ -2,6 +2,7 @@ import { ChangeEvent } from "react";
 import { IDefaultField } from "./default-field";
 
 export interface ITextField extends IDefaultField {
+    value: string;
     handleChange: (
         event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
     ) => void;
