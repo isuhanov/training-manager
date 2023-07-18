@@ -21,7 +21,7 @@ export class RecordsController {
     }
 
     @Post()
-    createRecord(@Body() createRecordDto: CreateRecordDto): string {
+    createRecord(@Body() createRecordDto: CreateRecordDto): Promise<Record> {
         return this.recordsService.create(createRecordDto); 
     }
 

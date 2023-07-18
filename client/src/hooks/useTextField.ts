@@ -13,20 +13,23 @@ function useTextField(
     const validate = useCallback((value: string): string => {
         let err = ''
         
-        if (validators.isDigital && !(/^[0-9]+$/.test(value))) {
-            err = 'Поле должно содержать только положительные числа';
-        } else if (validators.minLength && value.length < validators.minLength) {
-            err = `Минимальная длина = ${validators.minLength}`;
-        } else if (validators.maxLength && value.length > validators.maxLength) {
-            err = `Максимальная длина = ${validators.maxLength}`;
+        if (validators.isRequired && value.length === 0) {
+            err = 'Поле обязательно';
+        } else if (value.length > 0) {
+            if (validators.isDigital && !(/^[0-9]+$/.test(value))) {
+                err = 'Поле должно содержать только положительные числа';
+            } else if (validators.maxLength && value.length > validators.maxLength) {
+                err = `Максимальная длина = ${validators.maxLength}`;
+            } else if (validators.minLength && value.length < validators.minLength) {
+                err = `Минимальная длина = ${validators.minLength}`;
+            } 
         }
-        console.log(value);
-        console.log(err);
+
         return err;
     }, [validators]);
 
     const handleChange = useCallback((event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-        const newValue = event.target.value;
+        const newValue = event.target.value.trim();
         setValue(newValue);
         setError(validate(newValue));
     }, [validate]);

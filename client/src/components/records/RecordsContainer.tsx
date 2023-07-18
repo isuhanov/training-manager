@@ -5,13 +5,13 @@ import { IRecord } from '../../ts/interfaces/globals/record';
 import { Justify, Wrap } from '../../ts/enums/flex';
 import Record from './Record';
 import axios from 'axios';
+import { API_SERVER_PATH } from '../../api/api-path';
 
 const RecordsContainer = () => {
     const [records, setRecords] = useState<IRecord[]>([]);
 
     useEffect(() => {
-        axios.get('http://localhost:4200/records').then(res => {
-            console.log(res.data);
+        axios.get<IRecord[]>(`${API_SERVER_PATH}/records`).then(res => {
             setRecords(res.data)            
         })
     }, []);

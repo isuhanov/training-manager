@@ -11,5 +11,6 @@ export interface ITextField extends IDefaultField {
 export interface ITextValidators {
     minLength?: number;
     maxLength?: number;
+    isRequired?: boolean;
     isDigital?: boolean;
 }

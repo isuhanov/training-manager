@@ -30,8 +30,9 @@ export class RecordsService {
         }); 
     }
 
-    create(createRecordDto: CreateRecordDto): string {
-        return 'create'; 
+    async create(createRecordDto: CreateRecordDto): Promise<Record> {
+        const newRecord =  this.recordRepository.create(createRecordDto);
+        return await this.recordRepository.save(newRecord); 
     }
 
     update(updateRecordDto: UpdateRecordDto, id: number): string {

@@ -16,7 +16,7 @@ function useTimePickerField(
     const validate = useCallback((value: Dayjs | null): string => {
         let err = ''
 
-        if (!!validators.isRequired && !value) { // если поле обязательно и value не заполнено
+        if (validators.isRequired && !value) { // если поле обязательно и value не заполнено
             err = 'Поле обязательно';
         }
         setError(err);

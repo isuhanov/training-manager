@@ -7,7 +7,6 @@ function useForm(fields: IDefaultField[]): {
 } {
     const isValid = useCallback((): boolean => {
         const errors = fields.map(field => field.hasError && field.hasError())
-        console.log(errors);
         return errors.every(error => !error);        
     }, [fields]);
 
