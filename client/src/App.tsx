@@ -1,11 +1,10 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 
 import * as S from './styles/components';
 import Header from './components/Header';
 import Main from './components/Main';
 import { Direction, Justify } from './ts/enums/flex';
 import Modal from './components/Modal';
-import RecordInfo from './components/records/RecordInfo';
 import { ModalContext } from './context/ModalContext';
 
 

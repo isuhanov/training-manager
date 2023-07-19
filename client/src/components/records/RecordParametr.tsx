@@ -6,13 +6,15 @@ import { ReactComponent as Results } from '../../assets/icons/results.svg';
 import { ReactComponent as Repeats } from '../../assets/icons/repeats.svg';
 
 interface IRecordParametr {
-    type: 'date' | 'time' | 'result' | 'repeats';
+    type: 'date' | 'time' | 'datetime' | 'result' | 'repeats';
     value: string;
 }
 
 const RecordParametr = ({ type, value }: IRecordParametr) => {
 
     const formatDate = (date: string): string => (new Date(date).toLocaleString().slice(0, -10));
+    const formatDatetime = (date: string): string => (new Date(date).toLocaleString());
+
 
     return (
         <S.RecordParametr>
@@ -24,7 +26,9 @@ const RecordParametr = ({ type, value }: IRecordParametr) => {
                 }
             </S.Icon>
             <S.RecordParametrVal>
-                { type === 'date' ? formatDate(value) : value }
+                { type === 'date' ? formatDate(value) 
+                    : type === 'datetime' ? formatDatetime(value)
+                    : value  }
             </S.RecordParametrVal>
         </S.RecordParametr>
     );

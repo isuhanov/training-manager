@@ -31,7 +31,7 @@ export class RecordsController {
     }
 
     @Delete(':id')
-    deleteRecord(@Param('id') id: number): string {
+    deleteRecord(@Param('id') id: number): Promise<void> {
         return this.recordsService.delete(id); 
     }
 }

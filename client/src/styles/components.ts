@@ -79,13 +79,13 @@ export const Button = styled.button<IButton>`
     font-size: ${({ size = '15px' }) => size};
     font-weight: ${({ weight = '700' }) => weight};
     color: ${({ theme }) => theme.colors.font};
-    background-color: ${({ theme, bgColor }) => bgColor?.main || theme.colors.primary};
+    background-color: ${({ theme, bgcolor }) => bgcolor?.main || theme.colors.primary};
     
 
     transition: background-color .1s linear;
 
-    &:hover { background-color: ${({ theme, bgColor }) => bgColor?.hover || theme.colors.primaryHover}; }
-    &:active { background-color: ${({ theme, bgColor }) => bgColor?.active || theme.colors.primaryActive}; }
+    &:hover { background-color: ${({ theme, bgcolor }) => bgcolor?.hover || theme.colors.primaryHover}; }
+    &:active { background-color: ${({ theme, bgcolor }) => bgcolor?.active || theme.colors.primaryActive}; }
 `;
 
 export const ButtonClose = styled.button`

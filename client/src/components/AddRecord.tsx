@@ -27,7 +27,7 @@ const AddRecord = () => {
 
     const form = useForm([training, time, result, repeats]);
     
-    const handleSave = () => {
+    const handleSave = (): void => {
         if (!form.isValid()) return; 
         axios.post(`${API_SERVER_PATH}/records`, { 
             training: training.value,
