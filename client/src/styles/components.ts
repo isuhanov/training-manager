@@ -83,9 +83,28 @@ export const Button = styled.button<IButton>`
 
     transition: background-color .1s linear;
 
+    &:hover { background-color: ${({ theme }) => theme.colors.primaryHover}; }
+    &:active { background-color: ${({ theme }) => theme.colors.primaryActive}; }
+`;
+
+export const ButtonClose = styled.button`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: inherit;
+
+    transition: background-color .1s linear;
 
     &:hover { background-color: ${({ theme }) => theme.colors.primaryHover}; }
     &:active { background-color: ${({ theme }) => theme.colors.primaryActive}; }
+
+    span {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 `;
 
 export const Icon = styled.span<IIcon>`
@@ -221,4 +240,37 @@ export const Error = styled.p`
     font-weight: 700;
     margin: 15px;
     color:  ${({ theme }) => theme.colors.primary};
+`;
+
+
+
+export const ModalContainer = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.79);
+`; 
+
+export const Modal = styled.div`
+    max-width: 40%;
+    min-height: 100px;
+    border-radius: 5px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    background-color:  ${({ theme }) => theme.colors.bg};
+`;
+
+export const ModalHeader = styled.div`  
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
 `;
