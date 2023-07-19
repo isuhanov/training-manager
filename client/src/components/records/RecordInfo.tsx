@@ -1,4 +1,6 @@
+import { useContext } from 'react';
 import axios from 'axios';
+
 import * as S from '../../styles/components';
 import { Align, Direction, Justify } from '../../ts/enums/flex';
 import { IRecord } from '../../ts/interfaces/globals/record';
@@ -6,18 +8,18 @@ import RecordIcon from './RecordIcon';
 import RecordParametr from './RecordParametr';
 import { API_SERVER_PATH } from '../../api/api-path';
 import { ModalContext } from '../../context/ModalContext';
-import { useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { RecordsContext } from '../../context/RecordsContext';
 
 interface IRecordInfoProps extends IRecord{};
 
 const RecordInfo = ({ id, training, time, result, repeats, date }: IRecordInfoProps) => {
 
     const { closeModal } = useContext(ModalContext);
+    const { deleteRecord } = useContext(RecordsContext);
 
     const handleDelete = (): void => {
         axios.delete(`${API_SERVER_PATH}/records/${id}`).then(res => {
-            console.log(res);
+            deleteRecord(id);
             closeModal();
         }).catch(err => console.log(err));
     }
