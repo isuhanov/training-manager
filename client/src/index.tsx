@@ -9,6 +9,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import GlobalStyles from './styles/globals';
 import { theme } from './styles/theme';
+import { ModalState } from './context/ModalContext';
 
 const root = ReactDOM.createRoot(
 	document.getElementById('root') as HTMLElement
@@ -16,12 +17,14 @@ const root = ReactDOM.createRoot(
 root.render(
 	<React.StrictMode>
 		<ThemeProvider theme={theme}>
-		<LocalizationProvider dateAdapter={AdapterDayjs}>
-			<GlobalStyles />
-			<BrowserRouter>
-				<App />
-			</BrowserRouter>
-		</LocalizationProvider>
+			<LocalizationProvider dateAdapter={AdapterDayjs}>
+				<GlobalStyles />
+				<BrowserRouter>
+					<ModalState>
+						<App />
+					</ModalState>
+				</BrowserRouter>
+			</LocalizationProvider>
 		</ThemeProvider>
 	</React.StrictMode>
 );

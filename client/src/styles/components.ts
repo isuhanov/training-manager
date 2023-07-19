@@ -269,6 +269,7 @@ export const ModalContainer = styled.div`
 `; 
 
 export const Modal = styled.div`
+    min-width: 30%;
     max-width: 40%;
     min-height: 100px;
     border-radius: 5px;
