@@ -79,12 +79,13 @@ export const Button = styled.button<IButton>`
     font-size: ${({ size = '15px' }) => size};
     font-weight: ${({ weight = '700' }) => weight};
     color: ${({ theme }) => theme.colors.font};
-    background-color: ${({ theme }) => theme.colors.primary};
+    background-color: ${({ theme, bgColor }) => bgColor?.main || theme.colors.primary};
+    
 
     transition: background-color .1s linear;
 
-    &:hover { background-color: ${({ theme }) => theme.colors.primaryHover}; }
-    &:active { background-color: ${({ theme }) => theme.colors.primaryActive}; }
+    &:hover { background-color: ${({ theme, bgColor }) => bgColor?.hover || theme.colors.primaryHover}; }
+    &:active { background-color: ${({ theme, bgColor }) => bgColor?.active || theme.colors.primaryActive}; }
 `;
 
 export const ButtonClose = styled.button`
@@ -178,6 +179,17 @@ export const RecordParametrVal = styled.span`
     color: ${({ theme }) => theme.colors.font};
 `;
 
+export const RecordInfo = styled(FlexContainer)`
+    ${RecordParametr} {
+        svg {
+            width: 25px;
+            height: 25px;
+        }
+        ${RecordParametrVal} {
+            font-size: 14px;
+        }
+    }
+`;
 
 
 export const Form = styled.form`
@@ -273,4 +285,10 @@ export const ModalHeader = styled.div`
     align-items: center;
     justify-content: space-between;
     gap: 20px;
+    margin-bottom: 5px;
+`;
+
+export const ModalTitle = styled(SubTitle)`
+    font-size: 22px;
+    margin-left: 5px;
 `;

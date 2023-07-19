@@ -15,11 +15,11 @@ const Record = ({ id, training, time, result, repeats, date }: IRecordProps) => 
             <RecordIcon type={training} />
             <S.RecordParametrContainer>
                 <RecordParametr type={'date'} value={date} />
-                    <RecordParametr type={'time'} value={time}/>
-                    <RecordParametr type={'result'} value={result}/>
-                    { training === 'strength' &&
-                        <RecordParametr type={'repeats'} value={repeats || ''} />
-                    }
+                <RecordParametr type={'time'} value={time}/>
+                <RecordParametr type={'result'} value={result}/>
+                { training === 'strength' &&
+                    <RecordParametr type={'repeats'} value={repeats || ''} />
+                }
             </S.RecordParametrContainer>
         </S.Record>
     );

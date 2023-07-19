@@ -4,25 +4,26 @@ import * as S from '../styles/components';
 import { ReactComponent as Close } from '../assets/icons/close.svg';
 
 
-interface IModal {
+interface IModalProps {
+    title: string;
     children: ReactNode;
+    onClose: () => void;
 }
 
-const Modal = ({ children }: IModal) => {
+const Modal = ({ title, children, onClose }: IModalProps) => {
     return (
         <S.ModalContainer>
             <S.Modal>
                 <S.ModalHeader>
-                    <S.SubTitle>Название тренеровки</S.SubTitle>
-                    <S.ButtonClose>
+                    <S.ModalTitle>{ title }</S.ModalTitle>
+                    <S.ButtonClose onClick={onClose}>
                         <S.Icon>
                             <Close />
                         </S.Icon>
                     </S.ButtonClose>
                 </S.ModalHeader>
-
+                { children }
             </S.Modal>
-            { children }
         </S.ModalContainer>        
     );
 }
