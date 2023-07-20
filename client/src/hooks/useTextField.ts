@@ -1,4 +1,4 @@
-import { ChangeEvent, useCallback, useState } from "react";
+import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import { ITextField, ITextValidators } from "../ts/interfaces/form/text-field";
 
 
@@ -10,12 +10,16 @@ function useTextField(
     const [value, setValue] = useState(init);
     const [error, setError] = useState('');
 
+    useEffect(() => {
+        setValue(init);
+    }, [init]);
+
     const validate = useCallback((value: string): string => {
         let err = ''
         
-        if (validators.isRequired && value.length === 0) {
+        if (validators.isRequired && value?.length === 0) {
             err = 'Поле обязательно';
-        } else if (value.length > 0) {
+        } else if (value?.length > 0) {
             if (validators.isDigital && !(/^[0-9]+$/.test(value))) {
                 err = 'Поле должно содержать только положительные числа';
             } else if (validators.maxLength && value.length > validators.maxLength) {

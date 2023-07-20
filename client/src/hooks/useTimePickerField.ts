@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { ITimePickerField, ITimePickerValidators } from "../ts/interfaces/form/time-picker-field";
 import { Dayjs } from "dayjs";
 import { TimeValidationError } from "@mui/x-date-pickers";
@@ -12,6 +12,10 @@ function useTimePickerField(
 ): ITimePickerField {
     const [value, setValue] = useState<Dayjs | null>(init);
     const [error, setError] = useState('');
+
+    useEffect(() => {
+        setValue(init);
+    }, [init]);
 
     const validate = useCallback((value: Dayjs | null): string => {
         let err = ''

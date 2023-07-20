@@ -12,6 +12,7 @@ const Main = () => {
                 <Routes>
                     <Route path='/' element={ <RecordsPage /> }/>
                     <Route path='/add' element={ <AddRecordPage /> }/>
+                    <Route path='/edit/:id' element={ <AddRecordPage /> }/>
                 </Routes>                
             </S.Container>
         </S.Main>

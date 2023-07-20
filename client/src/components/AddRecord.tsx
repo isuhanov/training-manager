@@ -1,4 +1,6 @@
-import { useNavigate } from 'react-router-dom';
+import { useEffect, useMemo, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import dayjs from 'dayjs';
 import axios from 'axios';
 
 import * as S from '../styles/components';
@@ -8,36 +10,74 @@ import useSelectField from '../hooks/useSelectField';
 import useTimePickerField from '../hooks/useTimePickerField';
 import useForm from '../hooks/useForm';
 import { API_SERVER_PATH } from '../api/api-path';
+import { IRecord } from '../ts/interfaces/globals/record';
 
 const AddRecord = () => {
     const navigate = useNavigate();
+    const { id } = useParams();
+    const [record, setRecord] = useState<IRecord>();
 
-    const training = useSelectField('training', 'running');
-    const time = useTimePickerField('time', { isRequired: true });
+    useEffect(() => {
+        // если передана id, то получить данные из записи из БД
+        if (id) {
+            axios.get<IRecord>(`${API_SERVER_PATH}/records/${id}`).then(res => {
+                if (res.data) setRecord(res.data);
+            }).catch(err => console.log(err));
+        }
+    }, [id]);
+
+
+    /** Объект поля типа тренеровки */
+    const training = useSelectField(
+        'training', 
+        // если есть записи для изменения, то взять значения для поля из нее, иначе дать дефлтное
+        useMemo(() => record?.training || 'running', [record])
+    );
+
+    /** Объект поля времени тренеровки */
+    const time = useTimePickerField(
+        'time', 
+        { isRequired: true },
+        // если есть записи для изменения, то взять значения для поля из нее, иначе дать дефлтное
+        useMemo(() => record ? dayjs(`2023-07-07${record?.time}`) : null, [record])
+    );
+
+    /** Объект поля результата тренеровки */
     const result = useTextField('result', {
         minLength: 2,
         isRequired: true,
         maxLength: 50
-    });
+    }, useMemo(() => record?.result || '', [record])); // если есть записи для изменения, то взять значения для поля из нее, иначе дать дефлтное
+
+    /** Объект поля кол-ва подходов в тренеровке */
     const repeats = useTextField('repeats', {
         minLength: 1,
         isRequired: training.value === 'strength',
         isDigital: true
-    });
+    }, useMemo(() => record?.repeats || '', [record])); // если есть записи для изменения, то взять значения для поля из нее, иначе дать дефлтное
 
+
+    /** Объект формы */
     const form = useForm([training, time, result, repeats]);
-    
-    const handleSave = (): void => {
-        if (!form.isValid()) return; 
-        axios.post(`${API_SERVER_PATH}/records`, { 
+
+    /** Функция-обработчки клика по кнопки "Сохранить" для сохранения данных в БД */
+    const handleSave = async (): Promise<void> => {
+        if (!form.isValid()) return; // если форма не валидно, то возврат из функции
+        const data = { 
+            id,
             training: training.value,
             time: time.value?.toDate().toLocaleString().slice(-8),
             result: result.value,
-            repeats: training.value === 'strength' ? repeats.value : undefined
-         }).then(res => {
-            console.log(res);
+            repeats: training.value === 'strength' ? repeats.value : null
+        }
+
+        try {
+            // если передано id (то есть сейчас происходит редактирование, то вызов PUT запроса, иначе POST)
+            id ? await axios.put(`${API_SERVER_PATH}/records`, data) : await axios.post<IRecord>(`${API_SERVER_PATH}/records`, data)
             navigate('/');
-        }).catch(err => console.log(err));
+        } catch (err) {
+            console.log(err);
+        }
     }
     
     return (

@@ -35,16 +35,19 @@ export class RecordsService {
         return await this.recordRepository.save(newRecord); 
     }
 
-    update(updateRecordDto: UpdateRecordDto, id: number): string {
-        return 'update'; 
+    async update(updateRecordDto: UpdateRecordDto): Promise<void> {
+        try {
+            await this.recordRepository.update(updateRecordDto.id, updateRecordDto); 
+        } catch (err) {
+            console.log(err);
+        } 
     }
 
     async delete(id: number): Promise<void> {
         try {
-            console.log(id);
             await this.recordRepository.delete(id);; 
-        } catch (error) {
-            console.log(error);
+        } catch (err) {
+            console.log(err);
         }
     }
 

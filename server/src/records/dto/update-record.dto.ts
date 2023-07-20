@@ -4,5 +4,4 @@ export class UpdateRecordDto {
     readonly time: string;
     readonly result: string;
     readonly repeats?: string;
-    readonly date: Date;
 }

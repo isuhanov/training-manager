@@ -9,7 +9,7 @@ interface IRecordsContext {
     records: IRecord[],
     /** Функция добавления записей в массив */    
     setRecords: (records: IRecord[]) => void,
-    /** Функция удаления записи */    
+    /** Функция удаления записи из массива*/    
     deleteRecord: (id: number) => void,
 }
 

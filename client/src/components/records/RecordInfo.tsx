@@ -9,6 +9,7 @@ import RecordParametr from './RecordParametr';
 import { API_SERVER_PATH } from '../../api/api-path';
 import { ModalContext } from '../../context/ModalContext';
 import { RecordsContext } from '../../context/RecordsContext';
+import { useNavigate } from 'react-router-dom';
 
 interface IRecordInfoProps extends IRecord{};
 
@@ -16,13 +17,22 @@ const RecordInfo = ({ id, training, time, result, repeats, date }: IRecordInfoPr
 
     const { closeModal } = useContext(ModalContext);
     const { deleteRecord } = useContext(RecordsContext);
+    const navigate = useNavigate();
 
+    /** Функция удаление записи из БД */
     const handleDelete = (): void => {
         axios.delete(`${API_SERVER_PATH}/records/${id}`).then(res => {
             deleteRecord(id);
             closeModal();
         }).catch(err => console.log(err));
     }
+
+    /** Функция открытия формы редактирования */
+    const handleEdit = (): void => {
+        navigate(`/edit/${id}`);
+        closeModal();
+    }
+
 
     return (
         <S.RecordInfo direction={Direction.Column} align={Align.FlexStart} gap='10px' padding='5px 0 0'>
@@ -38,7 +48,7 @@ const RecordInfo = ({ id, training, time, result, repeats, date }: IRecordInfoPr
                 </S.RecordParametrContainer>
             </S.FlexContainer>
             <S.FlexContainer justify={Justify.SpaceBetween}>
-                <S.Button type='button' padding='10px 25px'>
+                <S.Button onClick={handleEdit} type='button' padding='10px 25px'>
                     Изменить
                 </S.Button>
                 <S.Button onClick={handleDelete} type='button' padding='10px 25px' 

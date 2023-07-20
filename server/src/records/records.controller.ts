@@ -25,9 +25,9 @@ export class RecordsController {
         return this.recordsService.create(createRecordDto); 
     }
 
-    @Put(':id')
-    updateRecord(@Body() updateRecordDto: UpdateRecordDto, @Param('id') id: number): string {
-        return this.recordsService.update(updateRecordDto, id); 
+    @Put()
+    updateRecord(@Body() updateRecordDto: UpdateRecordDto): Promise<void> {
+        return this.recordsService.update(updateRecordDto); 
     }
 
     @Delete(':id')
