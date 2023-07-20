@@ -3,16 +3,16 @@ import { useNavigate, useParams } from 'react-router-dom';
 import dayjs from 'dayjs';
 import axios from 'axios';
 
-import * as S from '../styles/components';
-import { Justify } from '../ts/enums/flex';
-import useTextField from '../hooks/useTextField';
-import useSelectField from '../hooks/useSelectField';
-import useTimePickerField from '../hooks/useTimePickerField';
-import useForm from '../hooks/useForm';
-import { API_SERVER_PATH } from '../api/api-path';
-import { IRecord } from '../ts/interfaces/globals/record';
+import * as S from '../../styles/components';
+import { Justify } from '../../ts/enums/flex';
+import useTextField from '../../hooks/useTextField';
+import useSelectField from '../../hooks/useSelectField';
+import useTimePickerField from '../../hooks/useTimePickerField';
+import useForm from '../../hooks/useForm';
+import { API_SERVER_PATH } from '../../api/api-path';
+import { IRecord } from '../../ts/interfaces/globals/record';
 
-const AddRecord = () => {
+const RecordForm = () => {
     const navigate = useNavigate();
     const { id } = useParams();
     const [record, setRecord] = useState<IRecord>();
@@ -137,4 +137,4 @@ const AddRecord = () => {
     );
 }
 
-export default AddRecord;
+export default RecordForm;

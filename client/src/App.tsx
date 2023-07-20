@@ -6,14 +6,14 @@ import Main from './components/Main';
 import { Direction, Justify } from './ts/enums/flex';
 import Modal from './components/Modal';
 import { ModalContext } from './context/ModalContext';
-import { RecordsState } from './context/RecordsContext';
+import { RecordsProvider } from './context/RecordsContext';
 
 
 function App() {
     const { modal, element, closeModal } = useContext(ModalContext);
 
     return (
-        <RecordsState>
+        <RecordsProvider>
             <S.Body direction={Direction.Column} justify={Justify.FlexStart}>
                 <Header />
                 <Main />
@@ -23,7 +23,7 @@ function App() {
                     </Modal>
                 }
             </S.Body>
-        </RecordsState>
+        </RecordsProvider>
     );
 }
 

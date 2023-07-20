@@ -1,14 +1,14 @@
 import { useParams } from "react-router-dom";
-import AddRecord from "../components/AddRecord";
+import RecordForm from "../components/records/RecordForm";
 import Section from "../components/Section";
 
-const AddRecordPage = () => {
+const RecordFormPage = () => {
     const { id } = useParams();
     return (
         <Section title={id ? 'Изменение' : 'Добавление'}>
-            <AddRecord />
+            <RecordForm />
         </Section>
     );
 }
 
-export default AddRecordPage;
+export default RecordFormPage;

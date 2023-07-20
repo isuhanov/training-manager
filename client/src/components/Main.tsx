@@ -1,8 +1,10 @@
-import { Route, Routes } from 'react-router-dom';
+import { Outlet, Route, Routes } from 'react-router-dom';
 import * as S from '../styles/components';
 
 import RecordsPage from '../pages/RecordsPage';
-import AddRecordPage from '../pages/AddRecordPage';
+import RecordFormPage from '../pages/RecordFormPage';
+import LoginFormPage from '../pages/LoginFormPage';
+import RequireAuth from './router/RequireAuth';
 
 
 const Main = () => {
@@ -10,9 +12,18 @@ const Main = () => {
         <S.Main>
             <S.Container>
                 <Routes>
-                    <Route path='/' element={ <RecordsPage /> }/>
-                    <Route path='/add' element={ <AddRecordPage /> }/>
-                    <Route path='/edit/:id' element={ <AddRecordPage /> }/>
+                    <Route 
+                        element={
+                            <RequireAuth>
+                                <Outlet />
+                            </RequireAuth>
+                        }
+                    >
+                        <Route path='/' element={ <RecordsPage /> }/>
+                        <Route path='/add' element={ <RecordFormPage /> }/>
+                        <Route path='/edit/:id' element={ <RecordFormPage /> }/>
+                    </Route>
+                    <Route path='/login' element={ <LoginFormPage /> }/>
                 </Routes>                
             </S.Container>
         </S.Main>

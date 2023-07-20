@@ -14,7 +14,7 @@ interface IRecordsContext {
 }
 
 /**
- * Контекста для работы с записями тренеровок
+ * Контекст для работы с записями тренеровок
  */
 export const RecordsContext = createContext<IRecordsContext>({
     records: [],
@@ -25,7 +25,7 @@ export const RecordsContext = createContext<IRecordsContext>({
 /**
  * Компонент для работы с контекстом записей тренеровок
  */
-export const RecordsState = ({ children }: { children: ReactNode }) => {
+export const RecordsProvider = ({ children }: { children: ReactNode }) => {
     const [records, setRecords] = useState<IRecord[]>([]);
     
     const deleteRecord = (id: number) => {

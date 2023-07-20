@@ -9,7 +9,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import GlobalStyles from './styles/globals';
 import { theme } from './styles/theme';
-import { ModalState } from './context/ModalContext';
+import { ModalProvider } from './context/ModalContext';
 
 const root = ReactDOM.createRoot(
 	document.getElementById('root') as HTMLElement
@@ -20,9 +20,9 @@ root.render(
 			<LocalizationProvider dateAdapter={AdapterDayjs}>
 				<GlobalStyles />
 				<BrowserRouter>
-					<ModalState>
+					<ModalProvider>
 						<App />
-					</ModalState>
+					</ModalProvider>
 				</BrowserRouter>
 			</LocalizationProvider>
 		</ThemeProvider>
