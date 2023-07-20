@@ -5,10 +5,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { RecordsModule } from './records/records.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
-    RecordsModule,
     ConfigModule.forRoot({ isGlobal: true }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
@@ -23,7 +23,9 @@ import { RecordsModule } from './records/records.module';
         autoLoadEntities: true,
       }),
       inject: [ConfigService]
-    })
+    }),
+    RecordsModule,
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],

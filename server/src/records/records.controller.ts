@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Param, Post, Put, Delete } from '@nestjs/common';
 
-import { CreateRecordDto } from './dto/create-recird.dto';
+import { CreateRecordDto } from './dto/create-record.dto';
 import { UpdateRecordDto } from './dto/update-record.dto';
 import { RecordsService } from './records.service';
 import { Record } from './entities/record.entity';
