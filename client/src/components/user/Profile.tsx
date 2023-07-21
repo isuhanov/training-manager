@@ -28,7 +28,7 @@ const Profile = () => {
             </S.ProfileInfo>
 
             <S.ProfileButtonBar>
-                <S.Button type='button'>
+                <S.Button type='button' isSecondary={true}>
                     Выйти
                 </S.Button>
                 <S.Button type='button'>

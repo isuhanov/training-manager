@@ -76,16 +76,16 @@ export const Button = styled.button<IButton>`
     justify-content: center;
     padding: ${({ padding = '10px' }) => padding};
     border-radius: 5px;
-    font-size: ${({ size = '15px' }) => size};
-    font-weight: ${({ weight = '700' }) => weight};
+    font-size: 15px;
+    font-weight: 700;
     color: ${({ theme }) => theme.colors.font};
-    background-color: ${({ theme, bgcolor }) => bgcolor?.main || theme.colors.primary};
+    background-color: ${({ theme, isSecondary }) => isSecondary ? theme.colors.secondary : theme.colors.primary};
     
 
     transition: background-color .1s linear;
 
-    &:hover { background-color: ${({ theme, bgcolor }) => bgcolor?.hover || theme.colors.primaryHover}; }
-    &:active { background-color: ${({ theme, bgcolor }) => bgcolor?.active || theme.colors.primaryActive}; }
+    &:hover { background-color: ${({ theme, isSecondary }) => isSecondary ? theme.colors.secondaryyHover : theme.colors.primaryHover}; }
+    &:active { background-color: ${({ theme, isSecondary }) => isSecondary ? theme.colors.secondaryActive : theme.colors.primaryActive}; }
 `;
 
 export const ButtonClose = styled.button`
