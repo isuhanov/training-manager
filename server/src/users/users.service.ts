@@ -23,10 +23,16 @@ export class UsersService {
         });
     }
 
-    async create(createUserDto: CreateUserDto): Promise<User> {
+    async create(createUserDto: CreateUserDto): Promise<any> {
         const newUser =  this.userRepository.create(createUserDto);
         const salt = await bcrypt.genSalt(10); // соль для хэша
         const hash = await bcrypt.hash(newUser.password, salt); // хэширование пароля
-        return await this.userRepository.save({...newUser, password: hash}); 
+        try {
+            await this.userRepository.save({...newUser, password: hash}); 
+            return { status: 'success' }
+        } catch (err) {
+            console.log(err);
+            
+        }
     }
 }

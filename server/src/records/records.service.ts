@@ -14,38 +14,61 @@ export class RecordsService {
         private readonly recordRepository: Repository<Record>,
     ) {}
 
-    async getAll(): Promise<Record[]> {
+    async getAllByUserId(userId: number): Promise<Record[]> {
         return await this.recordRepository.find({
+            where: {
+                user: {
+                    id: userId
+                }
+            },
             order: {
                 date: "DESC",
             },
         });
     }
 
-    async getById(id: number): Promise<Record> {
+    async getById(id: number, userId: number): Promise<Record> {
         return await this.recordRepository.findOne({
             where: {
-                id
+                id,
+                user: {
+                    id: userId
+                }
             }
         }); 
     }
 
-    async create(createRecordDto: CreateRecordDto): Promise<Record> {
-        const newRecord =  this.recordRepository.create(createRecordDto);
+    async create(createRecordDto: CreateRecordDto, userId: number): Promise<Record> {
+        const newRecord =  this.recordRepository.create({
+            ...createRecordDto, 
+            user: { 
+                id: userId
+            }
+        });        
         return await this.recordRepository.save(newRecord); 
     }
 
-    async update(updateRecordDto: UpdateRecordDto): Promise<void> {
+    async update(updateRecordDto: UpdateRecordDto, userId: number): Promise<void> {
         try {
-            await this.recordRepository.update(updateRecordDto.id, updateRecordDto); 
+            await this.recordRepository.update({
+                id: updateRecordDto.id,
+                user: {
+                    id: userId
+                }
+            }, updateRecordDto); 
         } catch (err) {
             console.log(err);
         } 
     }
 
-    async delete(id: number): Promise<void> {
+    async delete(id: number, userId: number): Promise<void> {
         try {
-            await this.recordRepository.delete(id);; 
+            await this.recordRepository.delete({
+                id,
+                user: {
+                    id: userId
+                }
+            });; 
         } catch (err) {
             console.log(err);
         }
