@@ -9,8 +9,9 @@ import useTextField from '../../hooks/useTextField';
 import useSelectField from '../../hooks/useSelectField';
 import useTimePickerField from '../../hooks/useTimePickerField';
 import useForm from '../../hooks/useForm';
-import { API_SERVER_PATH } from '../../api/api-path';
 import { IRecord } from '../../ts/interfaces/globals/record';
+import { API_PATH } from '../../api';
+import { addRecord, getRecord, updateRecord } from '../../api/records/records-api';
 
 const RecordForm = () => {
     const navigate = useNavigate();
@@ -20,7 +21,7 @@ const RecordForm = () => {
     useEffect(() => {
         // если передана id, то получить данные из записи из БД
         if (id) {
-            axios.get<IRecord>(`${API_SERVER_PATH}/records/${id}`).then(res => {
+            getRecord(id).then(res => {
                 if (res.data) setRecord(res.data);
             }).catch(err => console.log(err));
         }
@@ -73,7 +74,7 @@ const RecordForm = () => {
 
         try {
             // если передано id (то есть сейчас происходит редактирование, то вызов PUT запроса, иначе POST)
-            id ? await axios.put(`${API_SERVER_PATH}/records`, data) : await axios.post<IRecord>(`${API_SERVER_PATH}/records`, data)
+            id ? await updateRecord(data) : await addRecord(data);
             navigate('/');
         } catch (err) {
             console.log(err);

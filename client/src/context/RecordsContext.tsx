@@ -10,7 +10,7 @@ interface IRecordsContext {
     /** Функция добавления записей в массив */    
     setRecords: (records: IRecord[]) => void,
     /** Функция удаления записи из массива*/    
-    deleteRecord: (id: number) => void,
+    removeRecord: (id: number) => void,
 }
 
 /**
@@ -19,7 +19,7 @@ interface IRecordsContext {
 export const RecordsContext = createContext<IRecordsContext>({
     records: [],
     setRecords: (records: IRecord[]) => {},
-    deleteRecord: (id: number) => {},
+    removeRecord: (id: number) => {},
 });
 
 /**
@@ -28,12 +28,12 @@ export const RecordsContext = createContext<IRecordsContext>({
 export const RecordsProvider = ({ children }: { children: ReactNode }) => {
     const [records, setRecords] = useState<IRecord[]>([]);
     
-    const deleteRecord = (id: number) => {
+    const removeRecord = (id: number) => {
         setRecords(prev => prev.filter(record => record.id !== id));
     }
     
     return (
-        <RecordsContext.Provider value={{records, setRecords, deleteRecord}}>
+        <RecordsContext.Provider value={{records, setRecords, removeRecord}}>
             { children }
         </RecordsContext.Provider>
     );

@@ -6,23 +6,24 @@ import { Align, Direction, Justify } from '../../ts/enums/flex';
 import { IRecord } from '../../ts/interfaces/globals/record';
 import RecordIcon from './RecordIcon';
 import RecordParametr from './RecordParametr';
-import { API_SERVER_PATH } from '../../api/api-path';
 import { ModalContext } from '../../context/ModalContext';
 import { RecordsContext } from '../../context/RecordsContext';
 import { useNavigate } from 'react-router-dom';
+import { API_PATH } from '../../api';
+import { deleteRecord } from '../../api/records/records-api';
 
 interface IRecordInfoProps extends IRecord{};
 
 const RecordInfo = ({ id, training, time, result, repeats, date }: IRecordInfoProps) => {
 
     const { closeModal } = useContext(ModalContext);
-    const { deleteRecord } = useContext(RecordsContext);
+    const { removeRecord } = useContext(RecordsContext);
     const navigate = useNavigate();
 
     /** Функция удаление записи из БД */
     const handleDelete = (): void => {
-        axios.delete(`${API_SERVER_PATH}/records/${id}`).then(res => {
-            deleteRecord(id);
+        deleteRecord(id).then(res => {
+            removeRecord(id);
             closeModal();
         }).catch(err => console.log(err));
     }

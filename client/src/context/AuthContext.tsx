@@ -1,15 +1,26 @@
 import { ReactNode, createContext, useState } from "react";
 
-/**
- * Интерфейс контекста авторизации
- */
+import { login, logout } from "../api/users/users-api";
+
+interface ILoginUser {
+    login: string;
+    password: string;
+}
+
+/** Интерфейс контекста авторизации */
 interface IAuthContext {
     /** Текущий пользователь */
     user: any,
-    /** Функция авторизации */    
-    signin: (user:any, callback: VoidFunction) => void,
+
+    /** Функция авторизации 
+     * @param {ILoginUser} user - объект с полями для авторизации
+     * @param {VoidFunction} onSuccess - callback, который выполниться при успехе
+     * @param {VoidFunction} onError - callback, который выполниться при неудаче
+    */    
+   signin: (user: ILoginUser, onSuccess: VoidFunction, onError: VoidFunction) => Promise<void>,
+    
     /** Функция выхода */    
-    signout: (callback: VoidFunction) => void,
+    signout: () => void,
 }
 
 /**
@@ -17,22 +28,27 @@ interface IAuthContext {
  */
 export const AuthContext = createContext<IAuthContext>({
     user: null,
-    signin: () => {},
+    signin: async () => {},
     signout: () => {},
 });
 
-/**
- * Компонент для работы с контекстом авторизации
- */
+/** Компонент для работы с контекстом авторизации */
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-    const [user, setUser] = useState<any>(null);
+    const [user, setUser] = useState(localStorage.getItem('user'));
 
-    const signin = (element: ReactNode) => {
-        
+    const signin = async (user: ILoginUser, onSuccess: VoidFunction, onError: VoidFunction) => {
+        try {
+            const response = await login(user);
+            setUser(response.data.user);            
+            onSuccess();
+        } catch (err) {
+            onError();
+        }
     }
 
-    const signout = () => {
-        
+    const signout = async () => {
+        logout();
+        setUser(null);
     };
     
     return (

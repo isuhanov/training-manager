@@ -7,23 +7,26 @@ import { Direction, Justify } from './ts/enums/flex';
 import Modal from './components/Modal';
 import { ModalContext } from './context/ModalContext';
 import { RecordsProvider } from './context/RecordsContext';
+import { AuthProvider } from './context/AuthContext';
 
 
 function App() {
     const { modal, element, closeModal } = useContext(ModalContext);
 
     return (
-        <RecordsProvider>
-            <S.Body direction={Direction.Column} justify={Justify.FlexStart}>
-                <Header />
-                <Main />
-                { modal && 
-                    <Modal title={'Беговая тренеровка'} onClose={() => closeModal()}>
-                        { element }
-                    </Modal>
-                }
-            </S.Body>
-        </RecordsProvider>
+        <AuthProvider>
+            <RecordsProvider>
+                <S.Body direction={Direction.Column} justify={Justify.FlexStart}>
+                    <Header />
+                    <Main />
+                    { modal && 
+                        <Modal title={'Беговая тренеровка'} onClose={() => closeModal()}>
+                            { element }
+                        </Modal>
+                    }
+                </S.Body>
+            </RecordsProvider>
+        </AuthProvider>
     );
 }
 
