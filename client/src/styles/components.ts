@@ -293,3 +293,76 @@ export const ModalTitle = styled(SubTitle)`
     font-size: 22px;
     margin-left: 5px;
 `;
+
+
+
+export const Profile = styled.div`
+    width: 400px;
+    margin: 30px auto 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+`;
+
+export const ProfileLabel = styled.span`
+    font-size: 23px;
+    font-weight: 700;
+    color:  ${({ theme }) => theme.colors.font};
+`;
+
+export const ProfileValue = styled.span`
+    font-size: 20px;
+    font-weight: 500;
+    color:  ${({ theme }) => theme.colors.font};
+`;
+
+export const ProfileParametr = styled.div`
+    width: 100%;
+    padding: 5px 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 10px;
+`;
+
+export const ProfileLogin = styled(ProfileParametr)`
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid ${({ theme }) => theme.colors.font};
+`;
+
+export const ProfileInfo = styled.div`
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    border-radius: 5px;
+    background-color:  ${({ theme }) => theme.colors.bg};
+
+    ${ProfileParametr} { justify-content: flex-start; }
+
+    ${ProfileLabel} { font-size: 20px; }
+    ${ProfileValue} { 
+        font-size: 18px;
+        font-weight: 400;
+    }
+`;
+
+export const ProfileButtonBar = styled.div` 
+    width: 100%;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    ${Button} {
+        width: 45%;
+    }
+`;
