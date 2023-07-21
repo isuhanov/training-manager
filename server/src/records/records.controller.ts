@@ -1,17 +1,20 @@
-import { Body, Controller, Get, Param, Post, Put, Delete } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put, Delete, UseGuards, Req } from '@nestjs/common';
+import { Request } from 'express';
 
 import { CreateRecordDto } from './dto/create-record.dto';
 import { UpdateRecordDto } from './dto/update-record.dto';
 import { RecordsService } from './records.service';
 import { Record } from './entities/record.entity';
+import { JwtAuthGuard } from 'src/auth/strategy/jwt/jwt-auth.guard';
 
 @Controller('records')
 export class RecordsController {
 
     constructor(private readonly recordsService: RecordsService) {}
 
+    @UseGuards(JwtAuthGuard)
     @Get()
-    getAll(): Promise<Record[]> {
+    getAll(@Req() req: Request): Promise<Record[]> {
         return this.recordsService.getAll(); 
     }
 
