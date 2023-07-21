@@ -1,34 +1,50 @@
+import { useEffect, useState } from 'react';
+
 import * as S from '../../styles/components';
+import { useAuth } from '../../hooks/useAuth';
+import { getProfile } from '../../api/users/users-api';
+import { IUser } from '../../ts/interfaces/globals/user';
 
 const Profile = () => {
+    const { signout } = useAuth();
+    const [user, setUser] = useState<IUser>();
+    const formatDate = (date: string): string => (new Date(date).toLocaleString().slice(0, -10));
+
+    useEffect(() => {
+        getProfile().then(res => {
+            console.log(res);
+            setUser(res.data);
+        }).catch(err => console.log(err));
+    }, []);
+
     return (    
         <S.Profile>
             <S.ProfileLogin>
                 <S.ProfileLabel>Логин:</S.ProfileLabel>
-                <S.ProfileValue>ignat</S.ProfileValue>
+                <S.ProfileValue>{ user?.login }</S.ProfileValue>
             </S.ProfileLogin>
             <S.ProfileParametr>
                 <S.ProfileLabel>Фамилия:</S.ProfileLabel>
-                <S.ProfileValue>Суханов</S.ProfileValue>
+                <S.ProfileValue>{ user?.lastName }</S.ProfileValue>
             </S.ProfileParametr>
             <S.ProfileParametr>
                 <S.ProfileLabel>Имя:</S.ProfileLabel>
-                <S.ProfileValue>Игнат</S.ProfileValue>
+                <S.ProfileValue>{ user?.firstName }</S.ProfileValue>
             </S.ProfileParametr>
 
             <S.ProfileInfo>
                 <S.ProfileParametr>
                     <S.ProfileLabel>Дата рождения:</S.ProfileLabel>
-                    <S.ProfileValue>19.11.2002</S.ProfileValue>
+                    <S.ProfileValue>{ formatDate(user?.birthday || '') }</S.ProfileValue>
                 </S.ProfileParametr>  
                 <S.ProfileParametr>
                     <S.ProfileLabel>Пол:</S.ProfileLabel>
-                    <S.ProfileValue>Мужской</S.ProfileValue>
+                    <S.ProfileValue>{ user?.gender === 'male' ? 'Мужской' : 'Женский' }</S.ProfileValue>
                 </S.ProfileParametr>    
             </S.ProfileInfo>
 
             <S.ProfileButtonBar>
-                <S.Button type='button' isSecondary={true}>
+                <S.Button onClick={signout} type='button' $issecondary >
                     Выйти
                 </S.Button>
                 <S.Button type='button'>

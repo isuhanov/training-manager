@@ -14,27 +14,27 @@ export class RecordsController {
     constructor(private readonly recordsService: RecordsService) {}
 
     @Get()
-    getAll(@Req() req): Promise<Record[]> {
+    getAll(@Req() req: any): Promise<Record[]> {
         return this.recordsService.getAllByUserId(req.user.id); 
     }
 
     @Get(':id')
-    getOne(@Param('id') id: number, @Req() req): Promise<Record> {
+    getOne(@Param('id') id: number, @Req() req: any): Promise<Record> {
         return this.recordsService.getById(id, req.user.id); 
     }
 
     @Post()
-    createRecord(@Body() createRecordDto: CreateRecordDto, @Req() req: any, ): Promise<any> {
+    createRecord(@Body() createRecordDto: CreateRecordDto, @Req() req: any): Promise<any> {
         return this.recordsService.create(createRecordDto, req.user.id); 
     }
 
     @Put()
-    updateRecord(@Body() updateRecordDto: UpdateRecordDto, @Req() req): Promise<void> {
+    updateRecord(@Body() updateRecordDto: UpdateRecordDto, @Req() req: any): Promise<void> {
         return this.recordsService.update(updateRecordDto, req.user.id); 
     }
 
     @Delete(':id')
-    deleteRecord(@Param('id') id: number, @Req() req): Promise<void> {
+    deleteRecord(@Param('id') id: number, @Req() req: any): Promise<void> {
         return this.recordsService.delete(id, req.user.id); 
     }
 }

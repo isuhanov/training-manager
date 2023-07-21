@@ -12,9 +12,7 @@ const Main = () => {
     return (
         <S.Main>
             <S.Container>
-                <ProfilePage />
-
-                {/* <Routes>
+                <Routes>
                     <Route 
                         element={
                             <RequireAuth>
@@ -28,7 +26,7 @@ const Main = () => {
                         <Route path='/profile' element={ <ProfilePage /> }/>
                     </Route>
                     <Route path='/login' element={ <LoginFormPage /> }/>
-                </Routes>                 */}
+                </Routes>                
             </S.Container>
         </S.Main>
     );

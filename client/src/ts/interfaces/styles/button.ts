@@ -1,4 +1,4 @@
 export interface IButton {
-    padding?: string;
-    isSecondary?: boolean;
+    $padding?: string;
+    $issecondary?: boolean;
 }

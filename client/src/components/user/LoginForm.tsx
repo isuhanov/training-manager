@@ -43,7 +43,7 @@ const LoginForm = () => {
                 </S.Error>
             }
             <S.FlexContainer justify={Justify.FlexEnd}>
-                <S.Button onClick={handleLogin} type='button' padding='10px 15px'>
+                <S.Button onClick={handleLogin} type='button' $padding='10px 15px'>
                     Войти
                 </S.Button>
             </S.FlexContainer>

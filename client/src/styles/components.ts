@@ -74,18 +74,18 @@ export const Button = styled.button<IButton>`
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: ${({ padding = '10px' }) => padding};
+    padding: ${({ $padding = '10px' }) => $padding};
     border-radius: 5px;
     font-size: 15px;
     font-weight: 700;
     color: ${({ theme }) => theme.colors.font};
-    background-color: ${({ theme, isSecondary }) => isSecondary ? theme.colors.secondary : theme.colors.primary};
+    background-color: ${({ theme, $issecondary }) => $issecondary ? theme.colors.secondary : theme.colors.primary};
     
 
     transition: background-color .1s linear;
 
-    &:hover { background-color: ${({ theme, isSecondary }) => isSecondary ? theme.colors.secondaryyHover : theme.colors.primaryHover}; }
-    &:active { background-color: ${({ theme, isSecondary }) => isSecondary ? theme.colors.secondaryActive : theme.colors.primaryActive}; }
+    &:hover { background-color: ${({ theme, $issecondary }) => $issecondary ? theme.colors.secondaryyHover : theme.colors.primaryHover}; }
+    &:active { background-color: ${({ theme, $issecondary }) => $issecondary ? theme.colors.secondaryActive : theme.colors.primaryActive}; }
 `;
 
 export const ButtonClose = styled.button`

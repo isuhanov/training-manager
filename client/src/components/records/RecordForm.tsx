@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import dayjs from 'dayjs';
-import axios from 'axios';
 
 import * as S from '../../styles/components';
 import { Justify } from '../../ts/enums/flex';
@@ -10,7 +9,6 @@ import useSelectField from '../../hooks/useSelectField';
 import useTimePickerField from '../../hooks/useTimePickerField';
 import useForm from '../../hooks/useForm';
 import { IRecord } from '../../ts/interfaces/globals/record';
-import { API_PATH } from '../../api';
 import { addRecord, getRecord, updateRecord } from '../../api/records/records-api';
 
 const RecordForm = () => {
@@ -130,7 +128,7 @@ const RecordForm = () => {
                 </S.Field>
             }
             <S.FlexContainer justify={Justify.FlexEnd}>
-                <S.Button onClick={handleSave} type='button' padding='10px 15px'>
+                <S.Button onClick={handleSave} type='button' $padding='10px 15px'>
                     Сохранить
                 </S.Button>
             </S.FlexContainer>

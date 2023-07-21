@@ -1,5 +1,4 @@
 import { useContext } from 'react';
-import axios from 'axios';
 
 import * as S from '../../styles/components';
 import { Align, Direction, Justify } from '../../ts/enums/flex';
@@ -9,7 +8,6 @@ import RecordParametr from './RecordParametr';
 import { ModalContext } from '../../context/ModalContext';
 import { RecordsContext } from '../../context/RecordsContext';
 import { useNavigate } from 'react-router-dom';
-import { API_PATH } from '../../api';
 import { deleteRecord } from '../../api/records/records-api';
 
 interface IRecordInfoProps extends IRecord{};
@@ -49,10 +47,10 @@ const RecordInfo = ({ id, training, time, result, repeats, date }: IRecordInfoPr
                 </S.RecordParametrContainer>
             </S.FlexContainer>
             <S.FlexContainer justify={Justify.SpaceBetween}>
-                <S.Button onClick={handleEdit} type='button' padding='10px 25px' isSecondary={true}>
+                <S.Button onClick={handleEdit} type='button' $padding='10px 25px' $issecondary={true}>
                     Изменить
                 </S.Button>
-                <S.Button onClick={handleDelete} type='button' padding='10px 25px'>
+                <S.Button onClick={handleDelete} type='button' $padding='10px 25px'>
                     Удалить
                 </S.Button>
             </S.FlexContainer>
