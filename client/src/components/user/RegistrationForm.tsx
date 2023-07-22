@@ -4,12 +4,12 @@ import { useNavigate } from 'react-router-dom';
 import * as S from '../../styles/components';
 import { Justify, Wrap } from '../../ts/enums/flex';
 import RadioButton from '../ui-items/RadioButton';
-import useTextField from '../../hooks/useTextField';
-import useDateTimeField from '../../hooks/useTimePickerField';
-import useLoginField from '../../hooks/useLoginField';
-import usePasswordField from '../../hooks/usePasswordField';
-import useRadioField from '../../hooks/useRadioButton';
-import useForm from '../../hooks/useForm';
+import useTextField from '../../hooks/forms/useTextField';
+import useDateTimeField from '../../hooks/forms/useTimePickerField';
+import useLoginField from '../../hooks/forms/useLoginField';
+import usePasswordField from '../../hooks/forms/usePasswordField';
+import useRadioField from '../../hooks/forms/useRadioButton';
+import useForm from '../../hooks/forms/useForm';
 import { createUser } from '../../api/users/users-api';
 
 const RegistrationForm = () => {

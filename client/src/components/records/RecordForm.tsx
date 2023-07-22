@@ -4,10 +4,10 @@ import dayjs from 'dayjs';
 
 import * as S from '../../styles/components';
 import { Justify } from '../../ts/enums/flex';
-import useTextField from '../../hooks/useTextField';
-import useSelectField from '../../hooks/useSelectField';
-import useDateTimeField from '../../hooks/useTimePickerField';
-import useForm from '../../hooks/useForm';
+import useTextField from '../../hooks/forms/useTextField';
+import useSelectField from '../../hooks/forms/useSelectField';
+import useDateTimeField from '../../hooks/forms/useTimePickerField';
+import useForm from '../../hooks/forms/useForm';
 import { IRecord } from '../../ts/interfaces/globals/record';
 import { addRecord, getRecord, updateRecord } from '../../api/records/records-api';
 

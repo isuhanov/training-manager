@@ -3,8 +3,8 @@ import { useState } from 'react';
 
 import * as S from '../../styles/components';
 import { Justify } from '../../ts/enums/flex';
-import useTextField from '../../hooks/useTextField';
-import { useAuth } from '../../hooks/useAuth';
+import useTextField from '../../hooks/forms/useTextField';
+import { useAuth } from '../../hooks/auth/useAuth';
 
 const LoginForm = () => {
     const navigate = useNavigate();

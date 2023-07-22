@@ -17,11 +17,17 @@ const RecordsContainer = () => {
     }, [setRecords]);
 
     return (
-        <S.FlexContainer $wrap={Wrap.Wrap} $justify={Justify.Center} $gap='30px 100px' $padding='25px 40px'>
-            { records.map((record, index) => (
-                <Record  {...record} key={record.id} />
-            )) }
-        </S.FlexContainer>
+        <>
+            { records.length > 0 ?  
+                    <S.FlexContainer $wrap={Wrap.Wrap} $justify={Justify.Center} $gap='30px 100px' $padding='25px 40px'>
+                        { records.map((record, index) => (
+                            <Record  {...record} key={record.id} />
+                            )) }
+                    </S.FlexContainer>
+                :
+                    <S.Message>К сожалению, у вас пока что нет записей :(</S.Message>
+            }
+        </>
     );
 }
 

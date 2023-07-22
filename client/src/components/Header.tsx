@@ -1,4 +1,4 @@
-import { useAuth } from '../hooks/useAuth';
+import { useAuth } from '../hooks/auth/useAuth';
 import * as S from '../styles/components';
 import { Justify } from '../ts/enums/flex';
 import NavBar from './NavBar';

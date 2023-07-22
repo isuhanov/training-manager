@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import * as S from '../../styles/components';
-import { useAuth } from '../../hooks/useAuth';
+import { useAuth } from '../../hooks/auth/useAuth';
 import { getProfile } from '../../api/users/users-api';
 import { IUser } from '../../ts/interfaces/globals/user';
 

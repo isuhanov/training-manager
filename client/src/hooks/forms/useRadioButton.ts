@@ -1,5 +1,5 @@
 import { ChangeEvent, useCallback, useEffect, useState } from "react";
-import { IRadioField, IRadioValidators } from "../ts/interfaces/form/radio-button";
+import { IRadioField, IRadioValidators } from "../../ts/interfaces/form/radio-button";
 
 
 function useRadioField(

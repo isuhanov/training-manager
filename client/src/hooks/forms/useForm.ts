@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { IDefaultField } from "../ts/interfaces/form/default-field";
+import { IDefaultField } from "../../ts/interfaces/form/default-field";
 
 
 function useForm(fields: IDefaultField[]): {

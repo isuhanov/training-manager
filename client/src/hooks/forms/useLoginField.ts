@@ -1,11 +1,10 @@
 import { ChangeEvent, useCallback, useEffect, useState } from "react";
-import { ITextField } from "../ts/interfaces/form/text-field";
-import { IPasswordValidators } from "../ts/interfaces/form/password-field";
+import { ITextField, ITextValidators } from "../../ts/interfaces/form/text-field";
 
 
-function usePasswordField(
+function useLoginField(
     id: string,
-    validators: IPasswordValidators,
+    validators: ITextValidators,
     init:string = ''
 ): ITextField {
     const [value, setValue] = useState(init);
@@ -25,16 +24,13 @@ function usePasswordField(
                 err = `Максимальная длина = ${validators.maxLength}`;
             } else if (validators.minLength && value.length < validators.minLength) {
                 err = `Минимальная длина = ${validators.minLength}`;
-            } else if (validators.firstPassword && value !== validators.firstPassword) {
-                err = `Пароли не совпадают`;
             } else if (/[А-Яа-я!@#$%^&*()+\-=[\]{};':"\\|,.<>/?]/g.test(value)) {
-                err = 'Пароль может содержать только латинские буквы, цифры и символ нижнего подчеркиваня';
+                err = 'Логин может содержать только латинские буквы, цифры и символ нижнего подчеркиваня';
             }
         }
 
         return err;
     }, [validators]);
-
 
     const handleChange = useCallback((event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
         const newValue = event.target.value.trim();
@@ -58,4 +54,4 @@ function usePasswordField(
     }
 }
 
-export default usePasswordField;
+export default useLoginField;

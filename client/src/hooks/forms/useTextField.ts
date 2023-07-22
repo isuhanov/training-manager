@@ -1,5 +1,5 @@
 import { ChangeEvent, useCallback, useEffect, useState } from "react";
-import { ITextField, ITextValidators } from "../ts/interfaces/form/text-field";
+import { ITextField, ITextValidators } from "../../ts/interfaces/form/text-field";
 
 
 function useTextField(

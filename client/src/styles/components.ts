@@ -7,6 +7,10 @@ import { IButton } from "../ts/interfaces/styles/button";
 import { IIcon } from "../ts/interfaces/styles/icon";
 import { DatePicker, TimePicker } from "@mui/x-date-pickers";
 
+
+
+// ------------------------ COMMON ----------------------------------
+
 export const Container = styled.div`
     width: 100%;
     max-width: 1200px;
@@ -30,8 +34,6 @@ export const FlexContainer = styled.div<IFlexContainer>`
     padding: ${({ $padding = '0px' }) => $padding};
 `;
 
-
-
 export const Body = styled(FlexContainer)`
     height: 100vh;
 `;
@@ -50,8 +52,6 @@ export const Main = styled.main`
     flex-grow: 2; 
     overflow: auto;
 `;
-
-
 
 export const Title = styled.h1`
     font-size: 27px;
@@ -125,7 +125,17 @@ export const StyledLink = styled(Link)`
     &:active { color: ${({ theme }) => theme.colors.primaryActive}; }
 `;
 
+export const Message = styled.p`
+    margin: 30px auto;
+    text-align: center;
+    font-size: 21px;
+    font-weight: 700;
+    color: ${({ theme }) => theme.colors.font};
+`;
 
+
+
+// ------------------------ NAVBAR ----------------------------------
 
 export const  Nav = styled.nav`
     background-color: inherit;
@@ -158,6 +168,8 @@ export const NavItemLink = styled(NavLink)`
 `;
 
 
+
+// ------------------------ RECORDS ----------------------------------
 
 export const Record = styled(FlexContainer)`
     width: 40%;
@@ -201,6 +213,9 @@ export const RecordInfo = styled(FlexContainer)`
 `;
 
 
+
+// ------------------------ FORM ----------------------------------
+
 export const Form = styled.form`
     width: 45%;
     margin: 20px auto;
@@ -241,7 +256,6 @@ export const Input = styled.input`
 export const Select = styled.select`
     ${inputStyles}
 `; 
-
 
 const dateTimeStyle = css`
     width: 100%;
@@ -308,6 +322,7 @@ export const Error = styled.p`
 
 
 
+// ------------------------ MODAL ----------------------------------
 
 export const ModalContainer = styled.div`
     position: absolute;
@@ -348,6 +363,8 @@ export const ModalTitle = styled(SubTitle)`
 `;
 
 
+
+// ------------------------ PROFILE ----------------------------------
 
 export const Profile = styled.div`
     width: 400px;

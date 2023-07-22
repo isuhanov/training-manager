@@ -1,5 +1,5 @@
 import { ChangeEvent, useCallback, useEffect, useState } from "react";
-import { ISelectField } from "../ts/interfaces/form/select-field";
+import { ISelectField } from "../../ts/interfaces/form/select-field";
 
 
 function useSelectField(
