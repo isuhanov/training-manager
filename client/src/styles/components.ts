@@ -1,11 +1,11 @@
 import { css, styled } from "styled-components";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 import { Direction, Wrap } from "../ts/enums/flex";
 import { IFlexContainer } from "../ts/interfaces/styles/flex-container";
 import { IButton } from "../ts/interfaces/styles/button";
 import { IIcon } from "../ts/interfaces/styles/icon";
-import { TimePicker } from "@mui/x-date-pickers";
+import { DatePicker, TimePicker } from "@mui/x-date-pickers";
 
 export const Container = styled.div`
     width: 100%;
@@ -114,6 +114,15 @@ export const Icon = styled.span<IIcon>`
         height: ${({ height = '35px'}) => height};
         fill: ${({ theme }) => theme.colors.font};
     }
+`;
+
+export const StyledLink = styled(Link)`
+    font-size: 17px;
+    font-weight: 600;
+    color: ${({ theme }) => theme.colors.primary};
+
+    &:hover { color: ${({ theme }) => theme.colors.primaryHover}; }
+    &:active { color: ${({ theme }) => theme.colors.primaryActive}; }
 `;
 
 
@@ -233,7 +242,8 @@ export const Select = styled.select`
     ${inputStyles}
 `; 
 
-export const StyledTimePicker = styled(TimePicker)`  
+
+const dateTimeStyle = css`
     width: 100%;
     border-radius: 5px;
     background-color: white;
@@ -247,12 +257,55 @@ export const StyledTimePicker = styled(TimePicker)`
     }
 `;
 
+export const StyledTimePicker = styled(TimePicker)`  
+    ${dateTimeStyle}
+`;
+
+export const StyledDataPicker = styled(DatePicker)`
+    ${dateTimeStyle}
+`;
+
+export const RadioButton = styled.span`
+    height: 25px;
+    width: 25px;
+    background-color: white;
+    border-radius: 50%;
+    border: 3px solid ${({ theme }) => theme.colors.font};
+`;
+
+export const RadioLabel = styled.span`
+    font-size: 18px;
+    font-weight: 700;
+    color:  ${({ theme }) => theme.colors.font};
+`;
+
+export const Radio = styled.label`
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    
+    input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+    }
+
+    & input:checked ~ ${RadioButton} {
+        background-color: ${({ theme }) => theme.colors.primary};
+    }
+
+`;
+
 export const Error = styled.p`
     font-size: 14px;
     font-weight: 700;
     margin: 15px;
     color:  ${({ theme }) => theme.colors.primary};
 `;
+
 
 
 

@@ -47,10 +47,10 @@ const RecordInfo = ({ id, training, time, result, repeats, date }: IRecordInfoPr
                 </S.RecordParametrContainer>
             </S.FlexContainer>
             <S.FlexContainer justify={Justify.SpaceBetween}>
-                <S.Button onClick={handleEdit} type='button' $padding='10px 25px' $issecondary={true}>
+                <S.Button onClick={handleEdit} type='button' $padding='10px 25px'>
                     Изменить
                 </S.Button>
-                <S.Button onClick={handleDelete} type='button' $padding='10px 25px'>
+                <S.Button onClick={handleDelete} type='button' $padding='10px 25px' $issecondary={true}>
                     Удалить
                 </S.Button>
             </S.FlexContainer>

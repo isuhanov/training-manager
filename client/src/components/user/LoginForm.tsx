@@ -42,7 +42,8 @@ const LoginForm = () => {
                     { error }
                 </S.Error>
             }
-            <S.FlexContainer justify={Justify.FlexEnd}>
+            <S.FlexContainer justify={Justify.SpaceBetween}>
+                <S.StyledLink to='/registration'>Регистрация</S.StyledLink>
                 <S.Button onClick={handleLogin} type='button' $padding='10px 15px'>
                     Войти
                 </S.Button>

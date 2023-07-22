@@ -6,6 +6,7 @@ import RecordFormPage from '../pages/RecordFormPage';
 import LoginFormPage from '../pages/LoginFormPage';
 import RequireAuth from './router/RequireAuth';
 import ProfilePage from '../pages/ProfilePage';
+import RegistrationFormPage from '../pages/RegistrationFormPage';
 
 
 const Main = () => {
@@ -26,6 +27,7 @@ const Main = () => {
                         <Route path='/profile' element={ <ProfilePage /> }/>
                     </Route>
                     <Route path='/login' element={ <LoginFormPage /> }/>
+                    <Route path='/registration' element={ <RegistrationFormPage /> }/>
                 </Routes>                
             </S.Container>
         </S.Main>
