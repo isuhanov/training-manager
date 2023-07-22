@@ -4,15 +4,17 @@ import * as S from '../../styles/components';
 import { useAuth } from '../../hooks/auth/useAuth';
 import { getProfile } from '../../api/users/users-api';
 import { IUser } from '../../ts/interfaces/globals/user';
+import { useNavigate } from 'react-router-dom';
 
 const Profile = () => {
+    const navigate = useNavigate();
+
     const { signout } = useAuth();
     const [user, setUser] = useState<IUser>();
     const formatDate = (date: string): string => (new Date(date).toLocaleString().slice(0, -10));
 
     useEffect(() => {
         getProfile().then(res => {
-            console.log(res);
             setUser(res.data);
         }).catch(err => console.log(err));
     }, []);
@@ -47,7 +49,7 @@ const Profile = () => {
                 <S.Button onClick={signout} type='button' $issecondary >
                     Выйти
                 </S.Button>
-                <S.Button type='button'>
+                <S.Button onClick={() => navigate('/profile/edit')} type='button'>
                     Редактировать
                 </S.Button>
             </S.ProfileButtonBar>

@@ -28,7 +28,7 @@ const RecordInfo = ({ id, training, time, result, repeats, date }: IRecordInfoPr
 
     /** Функция открытия формы редактирования */
     const handleEdit = (): void => {
-        navigate(`/edit/${id}`);
+        navigate(`/records/edit/${id}`);
         closeModal();
     }
 

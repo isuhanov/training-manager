@@ -25,7 +25,7 @@ const NavBar = () => {
                     </S.NavItemLink>
                 </S.NavItem>
                 <S.NavItem>
-                    <S.NavItemLink to={'/add'}>
+                    <S.NavItemLink to={'/records/add'}>
                         <S.Button>
                             <S.Icon $width='20px' $height='20px'>
                                 <Add />
