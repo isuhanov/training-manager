@@ -2,7 +2,7 @@ import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import { ITextField, ITextValidators } from "../ts/interfaces/form/text-field";
 
 
-function useTextField(
+function useLoginField(
     id: string,
     validators: ITextValidators,
     init:string = ''
@@ -20,13 +20,13 @@ function useTextField(
         if (validators.isRequired && value?.length === 0) {
             err = 'Поле обязательно';
         } else if (value?.length > 0) {
-            if (validators.isDigital && !(/^[0-9]+$/.test(value))) {
-                err = 'Поле должно содержать только положительные числа';
-            } else if (validators.maxLength && value.length > validators.maxLength) {
+            if (validators.maxLength && value.length > validators.maxLength) {
                 err = `Максимальная длина = ${validators.maxLength}`;
             } else if (validators.minLength && value.length < validators.minLength) {
                 err = `Минимальная длина = ${validators.minLength}`;
-            } 
+            } else if (/[А-Яа-я!@#$%^&*()+\-=[\]{};':"\\|,.<>/?]/g.test(value)) {
+                err = 'Логин может содержать только латинские буквы, цифры и символ нижнего подчеркиваня';
+            }
         }
 
         return err;
@@ -54,4 +54,4 @@ function useTextField(
     }
 }
 
-export default useTextField;
+export default useLoginField;

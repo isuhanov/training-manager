@@ -6,7 +6,7 @@ import * as S from '../../styles/components';
 import { Justify } from '../../ts/enums/flex';
 import useTextField from '../../hooks/useTextField';
 import useSelectField from '../../hooks/useSelectField';
-import useTimePickerField from '../../hooks/useTimePickerField';
+import useDateTimeField from '../../hooks/useTimePickerField';
 import useForm from '../../hooks/useForm';
 import { IRecord } from '../../ts/interfaces/globals/record';
 import { addRecord, getRecord, updateRecord } from '../../api/records/records-api';
@@ -34,7 +34,7 @@ const RecordForm = () => {
     );
 
     /** Объект поля времени тренеровки */
-    const time = useTimePickerField(
+    const time = useDateTimeField(
         'time', 
         { isRequired: true },
         // если есть записи для изменения, то взять значения для поля из нее, иначе дать дефлтное
@@ -89,42 +89,26 @@ const RecordForm = () => {
                     <option value='cycling'>Велотренеровка</option>
                     <option value='strength'>Силовая</option>
                 </S.Select>
-                { training.error &&
-                    <S.Error>
-                        { training.error }
-                    </S.Error>
-                }
+                { training.error && <S.Error>{ training.error }</S.Error> }
             </S.Field>
             <S.Field>
                 <S.Label>Время тренеровки:</S.Label>
                 <S.StyledTimePicker ampm={false} ampmInClock={false} views={['hours', 'minutes', 'seconds']}          
                                     value={time.value} onChange={time.handleChange}
                 />
-                { time.error &&
-                    <S.Error>
-                        { time.error }
-                    </S.Error>
-                }
+                { time.error && <S.Error>{ time.error }</S.Error> }
             </S.Field>
             <S.Field>
                 <S.Label>Общий результат:</S.Label>
                 <S.Input value={result.value} onChange={result.handleChange}/>
-                { result.error &&
-                    <S.Error>
-                        { result.error }
-                    </S.Error>
-                }
+                { result.error && <S.Error>{ result.error }</S.Error> }
             </S.Field>
 
             { training.value === 'strength' &&
                 <S.Field>
                     <S.Label>Кол-во подходов:</S.Label>
                     <S.Input type='number' value={repeats.value} onChange={repeats.handleChange}/>
-                    { repeats.error &&
-                        <S.Error>
-                            { repeats.error }
-                        </S.Error>
-                    }
+                    { repeats.error && <S.Error>{ repeats.error }</S.Error> }
                 </S.Field>
             }
             <S.FlexContainer $justify={Justify.FlexEnd}>

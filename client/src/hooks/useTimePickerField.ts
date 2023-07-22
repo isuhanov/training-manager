@@ -1,15 +1,15 @@
 import { useCallback, useEffect, useState } from "react";
-import { ITimePickerField, ITimePickerValidators } from "../ts/interfaces/form/time-picker-field";
+import { IDateTimeField, IDateTimeValidators } from "../ts/interfaces/form/date-time-field";
 import { Dayjs } from "dayjs";
-import { TimeValidationError } from "@mui/x-date-pickers";
+import { DateValidationError, TimeValidationError } from "@mui/x-date-pickers";
 import { FieldChangeHandlerContext } from "@mui/x-date-pickers/internals";
 
 
-function useTimePickerField(
+function useDateTimeField(
     id: string,
-    validators: ITimePickerValidators,
+    validators: IDateTimeValidators,
     init: Dayjs | null = null 
-): ITimePickerField {
+): IDateTimeField {
     const [value, setValue] = useState<Dayjs | null>(init);
     const [error, setError] = useState('');
 
@@ -27,7 +27,7 @@ function useTimePickerField(
         return err; 
     }, [validators]);
 
-    const handleChange = useCallback((value: Dayjs, context: FieldChangeHandlerContext<TimeValidationError>) => {
+    const handleChange = useCallback((value: Dayjs, context: FieldChangeHandlerContext<TimeValidationError | DateValidationError>) => {
         setValue(value);
         setError(validate(value));
     }, [validate]);
@@ -47,4 +47,4 @@ function useTimePickerField(
     }
 }
 
-export default useTimePickerField;
+export default useDateTimeField;

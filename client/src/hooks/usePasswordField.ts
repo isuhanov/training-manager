@@ -1,10 +1,11 @@
 import { ChangeEvent, useCallback, useEffect, useState } from "react";
-import { ITextField, ITextValidators } from "../ts/interfaces/form/text-field";
+import { ITextField } from "../ts/interfaces/form/text-field";
+import { IPasswordValidators } from "../ts/interfaces/form/password-field";
 
 
-function useTextField(
+function usePasswordField(
     id: string,
-    validators: ITextValidators,
+    validators: IPasswordValidators,
     init:string = ''
 ): ITextField {
     const [value, setValue] = useState(init);
@@ -20,17 +21,20 @@ function useTextField(
         if (validators.isRequired && value?.length === 0) {
             err = 'Поле обязательно';
         } else if (value?.length > 0) {
-            if (validators.isDigital && !(/^[0-9]+$/.test(value))) {
-                err = 'Поле должно содержать только положительные числа';
-            } else if (validators.maxLength && value.length > validators.maxLength) {
+            if (validators.maxLength && value.length > validators.maxLength) {
                 err = `Максимальная длина = ${validators.maxLength}`;
             } else if (validators.minLength && value.length < validators.minLength) {
                 err = `Минимальная длина = ${validators.minLength}`;
-            } 
+            } else if (validators.firstPassword && value !== validators.firstPassword) {
+                err = `Пароли не совпадают`;
+            } else if (/[А-Яа-я!@#$%^&*()+\-=[\]{};':"\\|,.<>/?]/g.test(value)) {
+                err = 'Пароль может содержать только латинские буквы, цифры и символ нижнего подчеркиваня';
+            }
         }
 
         return err;
     }, [validators]);
+
 
     const handleChange = useCallback((event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
         const newValue = event.target.value.trim();
@@ -54,4 +58,4 @@ function useTextField(
     }
 }
 
-export default useTextField;
+export default usePasswordField;
