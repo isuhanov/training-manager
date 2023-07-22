@@ -1,6 +1,7 @@
-import { useMemo } from 'react';
-import * as S from '../../styles/components';
+import { useMemo, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
+import * as S from '../../styles/components';
 import { Justify, Wrap } from '../../ts/enums/flex';
 import RadioButton from '../ui-items/RadioButton';
 import useTextField from '../../hooks/useTextField';
@@ -9,8 +10,12 @@ import useLoginField from '../../hooks/useLoginField';
 import usePasswordField from '../../hooks/usePasswordField';
 import useRadioField from '../../hooks/useRadioButton';
 import useForm from '../../hooks/useForm';
+import { createUser } from '../../api/users/users-api';
 
 const RegistrationForm = () => {
+    const navigate = useNavigate();
+    
+    const [errorForm, setErrorForm] = useState('');
 
     /** Объект поля логина */
     const login = useLoginField('login', {
@@ -60,9 +65,18 @@ const RegistrationForm = () => {
             firstName: firstName.value,
             lastName: lastName.value,
             gender: gender.value,
-            birthday: birthday.value,
+            birthday: birthday.value?.format().slice(0, 10),
         }
-        console.log(data);
+
+        createUser(data).then(res => {
+            navigate('/login');
+        }).catch(err => {
+            if (err.response.status === 409) {
+                setErrorForm('Данный логин уже занят, попробуйте другой');
+            } else {
+                setErrorForm('Что-то пошло не так, попробуйте позже');
+            }
+        });
     }
 
 
@@ -113,6 +127,7 @@ const RegistrationForm = () => {
                 { birthday.error && <S.Error>{ birthday.error }</S.Error> }
             </S.Field>
 
+            { errorForm && <S.Error>{ errorForm }</S.Error> }
             <S.FlexContainer $justify={Justify.SpaceBetween}>
                 <S.StyledLink to='/login'>
                     Авторизация

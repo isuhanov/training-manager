@@ -15,9 +15,7 @@ function useRadioField(
     }, [init]);
 
     const validate = useCallback((value: string): string => {        
-        let err = ''
-        
-        console.log(value);
+        let err = ''        
         
         if (validators.isRequired && value?.length === 0) {
             err = 'Поле обязательно';

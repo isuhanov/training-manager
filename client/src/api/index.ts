@@ -1,5 +1,5 @@
 import axios from "axios";
-import { logout } from "./users/users-api";
+import { logout } from "./users/auth-api";
 
 export const API_PATH = 'http://localhost:4200';
 

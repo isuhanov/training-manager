@@ -1,4 +1,4 @@
-import { Injectable, BadRequestException } from '@nestjs/common';
+import { Injectable, BadRequestException, ConflictException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import * as bcrypt from "bcrypt";
@@ -24,6 +24,9 @@ export class UsersService {
     }
 
     async create(createUserDto: CreateUserDto): Promise<any> {
+        const user = await this.getOne(createUserDto.login);
+        if (user) throw new ConflictException('Account already exists');
+
         const newUser =  this.userRepository.create(createUserDto);
         const salt = await bcrypt.genSalt(10); // соль для хэша
         const hash = await bcrypt.hash(newUser.password, salt); // хэширование пароля
@@ -32,7 +35,7 @@ export class UsersService {
             return { status: 'success' }
         } catch (err) {
             console.log(err);
-            throw new BadRequestException({ statusCode: 500, message: 'Ошибка регистрации', err });
+            throw new BadRequestException('Registration error');
         }
     }
 }

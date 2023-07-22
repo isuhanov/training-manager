@@ -1,6 +1,6 @@
 import { ReactNode, createContext, useState } from "react";
 
-import { login, logout } from "../api/users/users-api";
+import { login, logout } from "../api/users/auth-api";
 
 interface ILoginUser {
     login: string;
