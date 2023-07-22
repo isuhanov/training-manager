@@ -18,7 +18,7 @@ const Record = (props: IRecordProps) => {
     const { openModal } = useContext(ModalContext);
 
     return (
-        <S.Record justify={Justify.SpaceBetween} gap='10px' onClick={() => openModal(<RecordInfo {...props} />)}>
+        <S.Record $justify={Justify.SpaceBetween} $gap='10px' onClick={() => openModal(<RecordInfo {...props} />)}>
             <RecordIcon type={training} />
             <S.RecordParametrContainer>
                 <RecordParametr type={'date'} value={date} />

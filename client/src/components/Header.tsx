@@ -12,7 +12,7 @@ const Header = () => {
         <S.Header>
             <S.Container>
                 <S.FlexContainer>
-                    <S.FlexContainer justify={Justify.Start} gap='10px'>
+                    <S.FlexContainer $justify={Justify.Start} $gap='10px'>
                         <S.Title>Training-manager</S.Title>
                     </S.FlexContainer>
 

@@ -21,15 +21,15 @@ const RegistrationForm = () => {
             </S.Field>
             <S.Field>
                 <S.Label>Пароль</S.Label>
-                <S.Input type='password' />
+                <S.Input type='password' autoComplete="on" />
             </S.Field>
             <S.Field>
                 <S.Label>Повторный пароль</S.Label>
-                <S.Input type='password' />
+                <S.Input type='password' autoComplete="on" />
             </S.Field>
             <S.Field>
                 <S.Label>Пол</S.Label>
-                <S.FlexContainer justify={Justify.SpaceAround} gap='10px' wrap={Wrap.Wrap}>
+                <S.FlexContainer $justify={Justify.SpaceAround} $gap='10px' $wrap={Wrap.Wrap}>
                     <RadioButton title='Мужской' name='gender' value='male'/>
                     <RadioButton title='Женский' name='gender' value='female'/>
                 </S.FlexContainer>
@@ -38,7 +38,7 @@ const RegistrationForm = () => {
                 <S.Label>Дата рождения</S.Label>
                 <S.StyledDataPicker /> 
             </S.Field>
-            <S.FlexContainer justify={Justify.SpaceBetween}>
+            <S.FlexContainer $justify={Justify.SpaceBetween}>
                 <S.StyledLink to='/login'>
                     Авторизация
                 </S.StyledLink>

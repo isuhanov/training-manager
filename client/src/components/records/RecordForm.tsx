@@ -127,7 +127,7 @@ const RecordForm = () => {
                     }
                 </S.Field>
             }
-            <S.FlexContainer justify={Justify.FlexEnd}>
+            <S.FlexContainer $justify={Justify.FlexEnd}>
                 <S.Button onClick={handleSave} type='button' $padding='10px 15px'>
                     Сохранить
                 </S.Button>

@@ -34,9 +34,9 @@ const RecordInfo = ({ id, training, time, result, repeats, date }: IRecordInfoPr
 
 
     return (
-        <S.RecordInfo direction={Direction.Column} align={Align.FlexStart} gap='10px' padding='5px 0 0'>
+        <S.RecordInfo $direction={Direction.Column} $align={Align.FlexStart} $gap='10px' $padding='5px 0 0'>
             <RecordParametr type={'datetime'} value={date} />
-            <S.FlexContainer justify={Justify.SpaceBetween} gap='20px'>
+            <S.FlexContainer $justify={Justify.SpaceBetween} $gap='20px'>
                 <RecordIcon type={training} />
                 <S.RecordParametrContainer>
                     <RecordParametr type={'time'} value={time}/>
@@ -46,7 +46,7 @@ const RecordInfo = ({ id, training, time, result, repeats, date }: IRecordInfoPr
                     }
                 </S.RecordParametrContainer>
             </S.FlexContainer>
-            <S.FlexContainer justify={Justify.SpaceBetween}>
+            <S.FlexContainer $justify={Justify.SpaceBetween}>
                 <S.Button onClick={handleEdit} type='button' $padding='10px 25px'>
                     Изменить
                 </S.Button>

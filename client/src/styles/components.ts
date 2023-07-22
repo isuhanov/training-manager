@@ -22,12 +22,12 @@ export const Container = styled.div`
 export const FlexContainer = styled.div<IFlexContainer>`
     width: 100%;
     display: flex;
-    flex-direction: ${({ direction = Direction.Row }) => direction};
-    align-items: ${({ align = 'center' }) => align};
-    flex-wrap: ${({ wrap = Wrap.Nowrap }) => wrap};
-    justify-content: ${({ justify = 'center' }) => justify};
-    gap: ${({ gap = '0px' }) => gap};
-    padding: ${({ padding = '0px' }) => padding};
+    flex-direction: ${({ $direction = Direction.Row }) => $direction};
+    align-items: ${({ $align = 'center' }) => $align};
+    flex-wrap: ${({ $wrap = Wrap.Nowrap }) => $wrap};
+    justify-content: ${({ $justify = 'center' }) => $justify};
+    gap: ${({ $gap = '0px' }) => $gap};
+    padding: ${({ $padding = '0px' }) => $padding};
 `;
 
 
@@ -110,8 +110,8 @@ export const ButtonClose = styled.button`
 
 export const Icon = styled.span<IIcon>`
     svg {
-        width: ${({ width = '35px'}) => width};
-        height: ${({ height = '35px'}) => height};
+        width: ${({ $width = '35px'}) => $width};
+        height: ${({ $height = '35px'}) => $height};
         fill: ${({ theme }) => theme.colors.font};
     }
 `;
@@ -133,12 +133,12 @@ export const  Nav = styled.nav`
 
 export const NavMenu = styled.ul<IFlexContainer>`
     display: flex;
-    flex-direction: ${({ direction = Direction.Row }) => direction};
-    align-items: ${({ align = 'center' }) => align};
-    flex-wrap: ${({ wrap = Wrap.Nowrap }) => wrap};
-    justify-content: ${({ justify = 'center' }) => justify};
-    gap: ${({ gap = '0px' }) => gap};
-    padding: ${({ padding = '0px' }) => padding};
+    flex-direction: ${({ $direction = Direction.Row }) => $direction};
+    align-items: ${({ $align = 'center' }) => $align};
+    flex-wrap: ${({ $wrap = Wrap.Nowrap }) => $wrap};
+    justify-content: ${({ $justify = 'center' }) => $justify};
+    gap: ${({ $gap = '0px' }) => $gap};
+    padding: ${({ $padding = '0px' }) => $padding};
 `;
 
 export const NavItem = styled.li`

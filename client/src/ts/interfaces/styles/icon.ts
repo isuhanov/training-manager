@@ -1,5 +1,5 @@
 export interface IIcon {
-    width?: string;
-    height?: string;
-    fill?: string;
+    $width?: string;
+    $height?: string;
+    $fill?: string;
 }

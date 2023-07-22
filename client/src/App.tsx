@@ -16,7 +16,7 @@ function App() {
     return (
         <AuthProvider>
             <RecordsProvider>
-                <S.Body direction={Direction.Column} justify={Justify.FlexStart}>
+                <S.Body $direction={Direction.Column} $justify={Justify.FlexStart}>
                     <Header />
                     <Main />
                     { modal && 

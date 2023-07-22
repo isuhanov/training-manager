@@ -34,7 +34,7 @@ const LoginForm = () => {
                 <S.Label>Пароль</S.Label>
                 <S.Input
                     value={password.value} onChange={password.handleChange} 
-                    type='password'
+                    type='password' autoComplete="on"
                 />
             </S.Field>
             { error && 
@@ -42,7 +42,7 @@ const LoginForm = () => {
                     { error }
                 </S.Error>
             }
-            <S.FlexContainer justify={Justify.SpaceBetween}>
+            <S.FlexContainer $justify={Justify.SpaceBetween}>
                 <S.StyledLink to='/registration'>Регистрация</S.StyledLink>
                 <S.Button onClick={handleLogin} type='button' $padding='10px 15px'>
                     Войти

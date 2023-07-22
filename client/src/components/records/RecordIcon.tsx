@@ -11,7 +11,7 @@ interface IRecordIconProprs {
 
 const RecordIcon = ({ type }: IRecordIconProprs) => {
     return (
-        <S.Icon width='80px' height='80px'>
+        <S.Icon $width='80px' $height='80px'>
             { type === 'running' ? <Running />
                 : type === 'swimming' ? <Swimming />
                 : type === 'cycling' ? <Cycling />

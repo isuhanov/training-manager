@@ -8,7 +8,7 @@ const NavBar = () => {
 
     return (
         <S.Nav>
-            <S.NavMenu gap='15px' justify={Justify.FlexEnd}>
+            <S.NavMenu $gap='15px' $justify={Justify.FlexEnd}>
                 <S.NavItem>
                     <S.NavItemLink to={'/'} className={({isActive}) => isActive ? 'active' : ''} >
                         Записи
@@ -27,7 +27,7 @@ const NavBar = () => {
                 <S.NavItem>
                     <S.NavItemLink to={'/add'}>
                         <S.Button>
-                            <S.Icon width='20px' height='20px'>
+                            <S.Icon $width='20px' $height='20px'>
                                 <Add />
                             </S.Icon>
                         </S.Button>
