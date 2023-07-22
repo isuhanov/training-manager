@@ -15,11 +15,6 @@ const NavBar = () => {
                     </S.NavItemLink>
                 </S.NavItem>
                 <S.NavItem>
-                    <S.NavItemLink to={'/statistics'}>
-                        Статистика
-                    </S.NavItemLink>
-                </S.NavItem>
-                <S.NavItem>
                     <S.NavItemLink to={'/profile'}>
                         Профиль
                     </S.NavItemLink>

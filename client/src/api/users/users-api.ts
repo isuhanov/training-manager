@@ -10,3 +10,7 @@ export const getProfile = async (): Promise<AxiosResponse<IUser>> => {
 export const createUser = async (data: any) => {
     return await axios.post<any>(`${API_PATH}/users`, data);
 }
+
+export const updateUser = async (data: any) => {
+    return await api.put('/users', data);
+}

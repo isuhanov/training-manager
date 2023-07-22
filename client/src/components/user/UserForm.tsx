@@ -10,7 +10,7 @@ import useLoginField from '../../hooks/forms/useLoginField';
 import usePasswordField from '../../hooks/forms/usePasswordField';
 import useRadioField from '../../hooks/forms/useRadioButton';
 import useForm from '../../hooks/forms/useForm';
-import { createUser, getProfile } from '../../api/users/users-api';
+import { createUser, getProfile, updateUser } from '../../api/users/users-api';
 import { IUser } from '../../ts/interfaces/globals/user';
 import dayjs from 'dayjs';
 
@@ -85,7 +85,7 @@ const UserForm = () => {
     const form = useForm([login, password, secondPassword, firstName, lastName, gender, birthday]);
 
     /** Функция-обработчки клика по кнопки "Зарегистрироваться" для сохранения данных в БД */
-    const handleSave = () => {
+    const handleSave = async () => {
         if (!form.isValid()) return;
         const data = {
             login: login.value,
@@ -97,7 +97,13 @@ const UserForm = () => {
         }
 
         console.log(data);
+
         
+        try {
+            user ? await updateUser(data) : await createUser(data);
+        } catch (err) {
+            console.log(err);
+        }
         // createUser(data).then(res => {
         //     navigate('/login');
         // }).catch(err => {
