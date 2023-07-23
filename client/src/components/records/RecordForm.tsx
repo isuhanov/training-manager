@@ -30,7 +30,7 @@ const RecordForm = () => {
     const training = useSelectField(
         'training', 
         // если есть записи для изменения, то взять значения для поля из нее, иначе дать дефолтное
-        record?.training || 'running'
+        useMemo(() => record?.training || 'running', [record])
     );
 
     /** Объект поля времени тренеровки */
@@ -38,7 +38,7 @@ const RecordForm = () => {
         'time', 
         { isRequired: true },
         // если есть записи для изменения, то взять значения для поля из нее, иначе дать дефолтное
-        record ? dayjs(`2023-07-07${record?.time}`) : null
+        useMemo(() => record ? dayjs(`2023-07-07${record?.time}`) : null, [record])
     );
 
     /** Объект поля результата тренеровки */
@@ -46,14 +46,14 @@ const RecordForm = () => {
         minLength: 2,
         isRequired: true,
         maxLength: 50
-    }, record?.result || ''); // если есть записи для изменения, то взять значения для поля из нее, иначе дать дефолтное
+    },  useMemo(() => record?.result || '', [record])); // если есть записи для изменения, то взять значения для поля из нее, иначе дать дефолтное
 
     /** Объект поля кол-ва подходов в тренеровке */
     const repeats = useTextField('repeats', {
         minLength: 1,
         isRequired: training.value === 'strength',
         isDigital: true
-    }, record?.repeats || ''); // если есть записи для изменения, то взять значения для поля из нее, иначе дать дефолтное
+    }, useMemo(() => record?.repeats || '', [record])); // если есть записи для изменения, то взять значения для поля из нее, иначе дать дефолтное
 
 
     /** Объект формы */
@@ -71,7 +71,7 @@ const RecordForm = () => {
         }
 
         try {
-            // если передано id (то есть сейчас происходит редактирование, то вызов PUT запроса, иначе POST)
+            // если передано id (то есть сейчас происходит редактирование), то вызов PUT запроса, иначе POST)
             id ? await updateRecord(data) : await addRecord(data);
             navigate('/');
         } catch (err) {

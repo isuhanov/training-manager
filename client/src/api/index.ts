@@ -16,6 +16,7 @@ api.interceptors.response.use((config) => config, (error) => {
     if (error.response.status === 401) {
         logout() 
     }
+    throw error;
 })
 
 export default api;

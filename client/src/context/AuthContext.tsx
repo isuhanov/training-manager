@@ -34,12 +34,12 @@ export const AuthContext = createContext<IAuthContext>({
 
 /** Компонент для работы с контекстом авторизации */
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-    const [user, setUser] = useState(localStorage.getItem('user'));
+    const [user, setUser] = useState(localStorage.getItem('access_token'));
 
     const signin = async (user: ILoginUser, onSuccess: VoidFunction, onError: VoidFunction) => {
         try {
             const response = await login(user);
-            setUser(response.data.user);            
+            setUser(response.data.access_token);            
             onSuccess();
         } catch (err) {
             onError();

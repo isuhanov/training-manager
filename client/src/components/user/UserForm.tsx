@@ -1,8 +1,9 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import dayjs from 'dayjs';
 
 import * as S from '../../styles/components';
-import { Justify, Wrap } from '../../ts/enums/flex';
+import { Direction, Justify, Wrap } from '../../ts/enums/flex';
 import RadioButton from '../ui-items/RadioButton';
 import useTextField from '../../hooks/forms/useTextField';
 import useDateTimeField from '../../hooks/forms/useTimePickerField';
@@ -12,7 +13,6 @@ import useRadioField from '../../hooks/forms/useRadioButton';
 import useForm from '../../hooks/forms/useForm';
 import { createUser, getProfile, updateUser } from '../../api/users/users-api';
 import { IUser } from '../../ts/interfaces/globals/user';
-import dayjs from 'dayjs';
 
 const UserForm = () => {
     const navigate = useNavigate();
@@ -35,7 +35,7 @@ const UserForm = () => {
         'login', 
         { isRequired: true },
         // если есть записи для изменения, то взять значения для поля из нее, иначе дать дефолтное
-        user?.login || ''
+        useMemo(() => user?.login || '', [user])
     );
 
     /** Объект поля пароля */
@@ -55,7 +55,8 @@ const UserForm = () => {
         'first-name', 
         { isRequired: true },
         // если есть записи для изменения, то взять значения для поля из нее, иначе дать дефолтное
-        user?.firstName || ''
+        useMemo(() => user?.firstName || '', [user])
+
     );
     
     /** Объект поля имени */
@@ -63,14 +64,14 @@ const UserForm = () => {
         'last-name', 
         { isRequired: true },    
         // если есть записи для изменения, то взять значения для поля из нее, иначе дать дефолтное
-        user?.lastName || ''
+        useMemo(() => user?.lastName || '', [user])
     );
 
     const gender = useRadioField(
         'gender', 
         { isRequired: true },    
         // если есть записи для изменения, то взять значения для поля из нее, иначе дать дефолтное
-        user?.gender || ''
+        useMemo(() => user?.gender || '', [user])
     );
     
     /** Объект поля даты рождения */
@@ -78,7 +79,7 @@ const UserForm = () => {
         'birthday', 
         { isRequired: true },
         // если есть записи для изменения, то взять значения для поля из нее, иначе дать дефолтное
-        user ? dayjs(user?.birthday) : null
+        useMemo(() => user ? dayjs(user?.birthday) : null, [user])
     );
 
     /** Объект формы */
@@ -96,23 +97,22 @@ const UserForm = () => {
             birthday: birthday.value?.format().slice(0, 10),
         }
 
-        console.log(data);
-
         
         try {
-            user ? await updateUser(data) : await createUser(data);
-        } catch (err) {
-            console.log(err);
+            if (user) {
+                await updateUser(data)
+                navigate('/profile');
+            } else {
+                await createUser(data);
+                navigate('/');
+            }
+        } catch (err: any) {
+            if (err.response.status === 409) {
+                setErrorForm('Данный логин уже занят, попробуйте другой');
+            } else {
+                setErrorForm('Что-то пошло не так, попробуйте позже');
+            }
         }
-        // createUser(data).then(res => {
-        //     navigate('/login');
-        // }).catch(err => {
-        //     if (err.response.status === 409) {
-        //         setErrorForm('Данный логин уже занят, попробуйте другой');
-        //     } else {
-        //         setErrorForm('Что-то пошло не так, попробуйте позже');
-        //     }
-        // });
     }
 
 
@@ -169,13 +169,15 @@ const UserForm = () => {
             </S.Field>
 
             { errorForm && <S.Error>{ errorForm }</S.Error> }
-            <S.FlexContainer $justify={Justify.SpaceBetween}>
-                <S.StyledLink to='/login'>
-                    Авторизация
-                </S.StyledLink>
+            <S.FlexContainer $justify={Justify.SpaceBetween} $direction={Direction.RowReverse}>
                 <S.Button onClick={handleSave} type='button' $padding='10px 15px'>
-                    Зарегистрироваться
+                    { user ? 'Сохранить' : 'Зарегистрироваться' }
                 </S.Button>
+                { !user && 
+                    <S.StyledLink to='/login'>
+                        Авторизация
+                    </S.StyledLink>
+                }
             </S.FlexContainer>
         </S.Form>
     );
