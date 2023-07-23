@@ -20,12 +20,18 @@ const UserForm = () => {
     
     const [errorForm, setErrorForm] = useState('');
     const [user, setUser] = useState<IUser>();
+    const [isVisiblePass, setIsVisiblePass] = useState(true);
+
+    const showPassword = () => {
+        setIsVisiblePass(prev => !prev);
+    }
 
 
     useEffect(() => {
         if (location.pathname === '/profile/edit') {
             getProfile().then(res => {
                 setUser(res.data);
+                setIsVisiblePass(false);
             }).catch(err => console.log(err));
         }
     }, [location]);
@@ -41,12 +47,12 @@ const UserForm = () => {
     /** Объект поля пароля */
     const password = usePasswordField('password', {
         minLength: 8,
-        isRequired: !user,
+        isRequired: isVisiblePass,
     });
 
     /** Объект поля повторного пароля */
     const secondPassword = usePasswordField('password', {
-        isRequired: !user,
+        isRequired: isVisiblePass,
         firstPassword: useMemo(() => password.value, [password.value])
     });
 
@@ -90,7 +96,7 @@ const UserForm = () => {
         if (!form.isValid()) return;
         const data = {
             login: login.value,
-            password: password.value,
+            password: isVisiblePass ? password.value : undefined,
             firstName: firstName.value,
             lastName: lastName.value,
             gender: gender.value,
@@ -136,8 +142,14 @@ const UserForm = () => {
                 { login.error && <S.Error>{ login.error }</S.Error> }
             </S.Field>
 
+            { user && 
+                <S.Button onClick={showPassword} type='button'>
+                    {isVisiblePass ? 'Отмена' : 'Сменить пароль'}
+                </S.Button>
+            }
 
-            { !user &&
+
+            { isVisiblePass &&
                 <>
                     <S.Field>
                         <S.Label>Пароль</S.Label>
