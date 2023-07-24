@@ -1,29 +1,32 @@
-import { useContext } from 'react';
-
 import * as S from '../../styles/components';
 import { Align, Direction, Justify } from '../../ts/enums/flex';
 import { IRecord } from '../../ts/interfaces/globals/record';
 import RecordIcon from './RecordIcon';
 import RecordParametr from './RecordParametr';
-import { ModalContext } from '../../context/ModalContext';
-import { RecordsContext } from '../../context/RecordsContext';
 import { useNavigate } from 'react-router-dom';
 import { deleteRecord } from '../../api/records/records-api';
+import { useModal } from '../../hooks/contexts/useModal';
+import { useRecords } from '../../hooks/contexts/useRecords';
 
 interface IRecordInfoProps extends IRecord{};
 
+/** Информация о запсии тренировки для модального окна */
 const RecordInfo = ({ id, training, time, result, repeats, date }: IRecordInfoProps) => {
 
-    const { closeModal } = useContext(ModalContext);
-    const { removeRecord } = useContext(RecordsContext);
+    const { closeModal } = useModal();
+    const { removeRecord } = useRecords();
     const navigate = useNavigate();
 
     /** Функция удаление записи из БД */
-    const handleDelete = (): void => {
-        deleteRecord(id).then(res => {
+    const handleDelete = async (): Promise<void> => {
+        try {
+            await deleteRecord(id);
             removeRecord(id);
             closeModal();
-        }).catch(err => console.log(err));
+        } catch (err) {
+            console.log(err);
+            navigate('/error');
+        }
     }
 
     /** Функция открытия формы редактирования */

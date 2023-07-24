@@ -14,21 +14,18 @@ import useForm from '../../hooks/forms/useForm';
 import { createUser, getProfile, updateUser } from '../../api/users/users-api';
 import { IUser } from '../../ts/interfaces/globals/user';
 
+
+/** Форма регистрации/изменения пользователя */
 const UserForm = () => {
     const navigate = useNavigate();
     const location = useLocation();
     
-    const [errorForm, setErrorForm] = useState('');
-    const [user, setUser] = useState<IUser>();
-    const [isVisiblePass, setIsVisiblePass] = useState(true);
-
-    const showPassword = () => {
-        setIsVisiblePass(prev => !prev);
-    }
-
+    const [errorForm, setErrorForm] = useState(''); // ошибки формы
+    const [user, setUser] = useState<IUser>(); // пользователь для редактирования
+    const [isVisiblePass, setIsVisiblePass] = useState(true); // состояние видимости поля пароля
 
     useEffect(() => {
-        if (location.pathname === '/profile/edit') {
+        if (location.pathname === '/profile/edit') { // если форма открыта для редактирования, то получить информацию о пользователе
             getProfile().then(res => {
                 setUser(res.data);
                 setIsVisiblePass(false);
@@ -62,7 +59,6 @@ const UserForm = () => {
         { isRequired: true },
         // если есть записи для изменения, то взять значения для поля из нее, иначе дать дефолтное
         useMemo(() => user?.firstName || '', [user])
-
     );
     
     /** Объект поля имени */
@@ -105,6 +101,7 @@ const UserForm = () => {
 
         
         try {
+            // если объект с пользователем есть (значит форма для редактирования), то запрос на изменение, иначе на добавление
             if (user) {
                 await updateUser(data)
                 navigate('/profile');
@@ -143,7 +140,7 @@ const UserForm = () => {
             </S.Field>
 
             { user && 
-                <S.Button onClick={showPassword} type='button'>
+                <S.Button onClick={() => setIsVisiblePass(prev => !prev)} type='button'>
                     {isVisiblePass ? 'Отмена' : 'Сменить пароль'}
                 </S.Button>
             }

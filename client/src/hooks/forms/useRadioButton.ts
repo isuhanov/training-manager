@@ -2,6 +2,7 @@ import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import { IRadioField, IRadioValidators } from "../../ts/interfaces/form/radio-button";
 
 
+/** Хук работы с полем радио-кнопок */
 function useRadioField(
     id: string,
     validators: IRadioValidators,

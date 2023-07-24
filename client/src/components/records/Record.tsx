@@ -1,21 +1,20 @@
-import { useContext } from 'react';
-import { ModalContext } from '../../context/ModalContext';
-
 import * as S from '../../styles/components';
 import { Justify } from '../../ts/enums/flex';
 import { IRecord } from '../../ts/interfaces/globals/record';
 import RecordIcon from './RecordIcon';
 import RecordParametr from './RecordParametr';
 import RecordInfo from './RecordInfo';
+import { useModal } from '../../hooks/contexts/useModal';
 
 
 interface IRecordProps extends IRecord{}
 
+/** Карточка записи тренировки */
 const Record = (props: IRecordProps) => { 
     
     const { training, time, result, repeats, date } = props;
 
-    const { openModal } = useContext(ModalContext);
+    const { openModal } = useModal();
 
     return (
         <S.Record $justify={Justify.SpaceBetween} $gap='10px' onClick={() => openModal(<RecordInfo {...props} />)}>

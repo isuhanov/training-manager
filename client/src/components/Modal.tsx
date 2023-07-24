@@ -6,10 +6,12 @@ import { ReactComponent as Close } from '../assets/icons/close.svg';
 
 interface IModalProps {
     title: string;
+    /** Компонент, который будет отображаться в модальном окне */
     children: ReactNode;
     onClose: () => void;
 }
 
+/** Модальное окно */
 const Modal = ({ title, children, onClose }: IModalProps) => {
     return (
         <S.ModalContainer>

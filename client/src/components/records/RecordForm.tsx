@@ -11,6 +11,7 @@ import useForm from '../../hooks/forms/useForm';
 import { IRecord } from '../../ts/interfaces/globals/record';
 import { addRecord, getRecord, updateRecord } from '../../api/records/records-api';
 
+/** Форма создания/редактирования записи тренировки */
 const RecordForm = () => {
     const navigate = useNavigate();
     const { id } = useParams();
@@ -76,6 +77,7 @@ const RecordForm = () => {
             navigate('/');
         } catch (err) {
             console.log(err);
+            navigate('/error');
         }
     }
     

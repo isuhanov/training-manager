@@ -4,8 +4,8 @@ import { ReactComponent as Add } from '../assets/icons/add.svg';
 import { Justify } from '../ts/enums/flex';
 
 
+/** Навигация приложения */
 const NavBar = () => {
-
     return (
         <S.Nav>
             <S.NavMenu $gap='15px' $justify={Justify.FlexEnd}>

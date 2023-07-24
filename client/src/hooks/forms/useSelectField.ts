@@ -2,6 +2,7 @@ import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import { ISelectField } from "../../ts/interfaces/form/select-field";
 
 
+/** Хук работы с полем выпадающего списка */
 function useSelectField(
     id: string,
     init:string

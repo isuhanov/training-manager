@@ -10,6 +10,7 @@ interface IRadioButtonProprs {
     onChange: (event: ChangeEvent<HTMLInputElement>) => void;
 } 
 
+/** Компонент радио кнопки */
 const RadioButton = memo(({ title, value, name, isChecked, onChange } : IRadioButtonProprs) => {
     return (
         <S.Radio>

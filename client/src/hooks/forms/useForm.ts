@@ -1,8 +1,9 @@
 import { useCallback } from "react";
 import { IDefaultField } from "../../ts/interfaces/form/default-field";
 
-
+/** Хук работы с формой */
 function useForm(fields: IDefaultField[]): {
+    /** Проверка всей полей формы на валидность */
     isValid: () => boolean;
 } {
     const isValid = useCallback((): boolean => {

@@ -1,9 +1,10 @@
-import { useAuth } from '../hooks/auth/useAuth';
 import * as S from '../styles/components';
 import { Justify } from '../ts/enums/flex';
+import { useAuth } from '../hooks/contexts/useAuth';
 import NavBar from './NavBar';
 
 
+/** Шапка приложения */
 const Header = () => {
 
     const { user } = useAuth();

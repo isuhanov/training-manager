@@ -2,6 +2,7 @@ import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import { ITextField, ITextValidators } from "../../ts/interfaces/form/text-field";
 
 
+/** Хук работы с полем логина */
 function useLoginField(
     id: string,
     validators: ITextValidators,

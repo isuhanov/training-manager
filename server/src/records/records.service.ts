@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
@@ -14,6 +14,7 @@ export class RecordsService {
         private readonly recordRepository: Repository<Record>,
     ) {}
 
+    /** Получение записей тренировок конкретного пользователя */
     async getAllByUserId(userId: number): Promise<Record[]> {
         return await this.recordRepository.find({
             where: {
@@ -27,6 +28,7 @@ export class RecordsService {
         });
     }
 
+    /** Получение записи тренировки по id конкретного пользователя */
     async getById(id: number, userId: number): Promise<Record> {
         return await this.recordRepository.findOne({
             where: {
@@ -38,6 +40,7 @@ export class RecordsService {
         }); 
     }
 
+    /** Создание записи тренировки */
     async create(createRecordDto: CreateRecordDto, userId: number): Promise<Record> {
         const newRecord =  this.recordRepository.create({
             ...createRecordDto, 
@@ -45,9 +48,15 @@ export class RecordsService {
                 id: userId
             }
         });        
-        return await this.recordRepository.save(newRecord); 
+        try {
+            return await this.recordRepository.save(newRecord); 
+        } catch (err) {
+            console.log(err);
+            throw new InternalServerErrorException('Create error');
+        }
     }
 
+    /** Изменение записи тренировки */
     async update(updateRecordDto: UpdateRecordDto, userId: number): Promise<void> {
         try {
             await this.recordRepository.update({
@@ -58,9 +67,11 @@ export class RecordsService {
             }, updateRecordDto); 
         } catch (err) {
             console.log(err);
+            throw new InternalServerErrorException('Update error');
         } 
     }
 
+    /** Удаление записи тренировки */
     async delete(id: number, userId: number): Promise<void> {
         try {
             await this.recordRepository.delete({
@@ -71,6 +82,7 @@ export class RecordsService {
             });; 
         } catch (err) {
             console.log(err);
+            throw new InternalServerErrorException('Delete error');
         }
     }
 

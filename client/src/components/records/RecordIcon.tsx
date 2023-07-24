@@ -6,9 +6,11 @@ import { ReactComponent as Cycling } from '../../assets/icons/cycling.svg';
 import { ReactComponent as Strength } from '../../assets/icons/strength.svg';
 
 interface IRecordIconProprs {
+    /** Типо тренеровки */
     type: string
 } 
 
+/** Иконка типа записи тренеровки */
 const RecordIcon = ({ type }: IRecordIconProprs) => {
     return (
         <S.Icon $width='80px' $height='80px'>

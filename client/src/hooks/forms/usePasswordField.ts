@@ -2,7 +2,7 @@ import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import { ITextField } from "../../ts/interfaces/form/text-field";
 import { IPasswordValidators } from "../../ts/interfaces/form/password-field";
 
-
+/** Хук работы с полем пароля */
 function usePasswordField(
     id: string,
     validators: IPasswordValidators,

@@ -1,14 +1,16 @@
-import React, { useContext, useEffect } from 'react';
+import { useEffect } from 'react';
 
 import * as S from '../../styles/components';
 import { Justify, Wrap } from '../../ts/enums/flex';
 import Record from './Record';
-import { RecordsContext } from '../../context/RecordsContext';
 import { getRecords } from '../../api/records/records-api';
+import { useRecords } from '../../hooks/contexts/useRecords';
 
+
+/** Контейнер для карточек записей тренировок */
 const RecordsContainer = () => {
     
-    const { records, setRecords } = useContext(RecordsContext);
+    const { records, setRecords } = useRecords()
 
     useEffect(() => {        
         getRecords().then(res => {
@@ -20,7 +22,7 @@ const RecordsContainer = () => {
         <>
             { records.length > 0 ?  
                     <S.FlexContainer $wrap={Wrap.Wrap} $justify={Justify.Center} $gap='30px 100px' $padding='25px 40px'>
-                        { records.map((record, index) => (
+                        { records.map((record) => (
                             <Record  {...record} key={record.id} />
                             )) }
                     </S.FlexContainer>

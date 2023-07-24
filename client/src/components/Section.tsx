@@ -7,6 +7,7 @@ interface ISectionProps {
 }
 
 
+/** Обертка для отображения страниц */
 const Section = ({ children, title }: ISectionProps) => {
     return (
         <>

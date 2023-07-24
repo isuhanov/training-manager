@@ -1,22 +1,18 @@
     import { ReactNode, createContext, useState } from "react";
 
-    /**
-     * Интерфейс контекста модального окна
-     */
+    /** Интерфейс контекста модального окна */
     interface IModalContext {
-        /** Состояние открытия модального окна*/
+        /** Состояние открытия модального окна */
         modal: boolean,
-        /** React-компонент, который будет в модальном окне*/    
+        /** React-компонент, который будет в модальном окне */    
         element: ReactNode,
-        /** Функция открытия модального окна*/    
+        /** Функция открытия модального окна */    
         openModal: (element: ReactNode) => void,
-        /** Функция закрытия модального окна*/    
+        /** Функция закрытия модального окна */    
         closeModal: () => void,
     }
 
-    /**
-     * Контекст для работы с модальным окном
-     */
+    /** Контекст для работы с модальным окном */
     export const ModalContext = createContext<IModalContext>({
         modal: false,
         element: null,
@@ -24,9 +20,7 @@
         closeModal: () => {},
     });
 
-    /**
-     * Компонент для работы с контекстом модального окна
-     */
+    /** Компонент для работы с контекстом модального окна */
     export const ModalProvider = ({ children }: { children: ReactNode }) => {
         const [modal, setModal] = useState(false);
         const [element, setElement] = useState<ReactNode>(null);

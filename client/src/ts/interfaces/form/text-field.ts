@@ -1,6 +1,7 @@
 import { ChangeEvent } from "react";
 import { IDefaultField } from "./default-field";
 
+/** Интерфейс текстового поля */
 export interface ITextField extends IDefaultField {
     value: string;
     handleChange: (
@@ -8,6 +9,7 @@ export interface ITextField extends IDefaultField {
     ) => void;
 }
 
+/** Интерфейс валидаторов для текстового поля */
 export interface ITextValidators {
     minLength?: number;
     maxLength?: number;

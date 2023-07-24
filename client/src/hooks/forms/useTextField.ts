@@ -1,7 +1,7 @@
 import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import { ITextField, ITextValidators } from "../../ts/interfaces/form/text-field";
 
-
+/** Хук работы с текстовым полем */
 function useTextField(
     id: string,
     validators: ITextValidators,

@@ -1,3 +1,4 @@
+/** Интерфейс записи тренировки */
 export interface IRecord {
     id: number;
     training: 'running' | 'swimming' | 'cycling' | 'strength';

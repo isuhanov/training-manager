@@ -3,18 +3,26 @@ import { useState } from 'react';
 
 import * as S from '../../styles/components';
 import { Justify } from '../../ts/enums/flex';
+import { useAuth } from '../../hooks/contexts/useAuth';
+import useForm from '../../hooks/forms/useForm';
 import useTextField from '../../hooks/forms/useTextField';
-import { useAuth } from '../../hooks/auth/useAuth';
 
+
+/** Форма авторизации */
 const LoginForm = () => {
     const navigate = useNavigate();
-    const { signin } = useAuth();
-    const [error, setError] = useState('');
+    const { signin } = useAuth(); 
+    const [error, setError] = useState(''); // поле ошибок формы
 
-    const login = useTextField('login', {});
-    const password = useTextField('password', {});
+    /** Объект поля логина */
+    const login = useTextField('login', { isRequired: true });
+    /** Объект поля пароля */
+    const password = useTextField('password', { isRequired: true });
     
-    const handleLogin = async () => {    
+    /** Объект формы */
+    const form = useForm([login, password]);
+    const handleLogin = async () => {
+        if (!form.isValid()) return;
         const user = {
             login: login.value, 
             password: password.value 
@@ -26,16 +34,13 @@ const LoginForm = () => {
         <S.Form>
             <S.Field>
                 <S.Label>Логин</S.Label>
-                <S.Input
-                    value={login.value} onChange={login.handleChange} 
-                />
+                <S.Input value={login.value} onChange={login.handleChange} />
+                { login.error && <S.Error>{ login.error }</S.Error> }
             </S.Field>
             <S.Field>
                 <S.Label>Пароль</S.Label>
-                <S.Input
-                    value={password.value} onChange={password.handleChange} 
-                    type='password' autoComplete="on"
-                />
+                <S.Input value={password.value} onChange={password.handleChange} type='password' autoComplete="on" />
+                { password.error && <S.Error>{ password.error }</S.Error> }
             </S.Field>
             { error && 
                 <S.Error>

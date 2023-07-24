@@ -7,8 +7,10 @@ import LoginFormPage from '../pages/LoginFormPage';
 import RequireAuth from './router/RequireAuth';
 import ProfilePage from '../pages/ProfilePage';
 import UserFormPage from '../pages/UserFormPage';
+import NotFoundPage from '../pages/NotFoundPage';
+import ServerErrorPage from '../pages/ServerErrorPage';
 
-
+/** Основная часть приложения */
 const Main = () => {
     return (
         <S.Main>
@@ -29,6 +31,8 @@ const Main = () => {
                     </Route>
                     <Route path='/login' element={ <LoginFormPage /> }/>
                     <Route path='/registration' element={ <UserFormPage /> }/>
+                    <Route path='/error' element={ <ServerErrorPage /> }/>
+                    <Route path='/*' element={ <NotFoundPage /> }/>
                 </Routes>                
             </S.Container>
         </S.Main>

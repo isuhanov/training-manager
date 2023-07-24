@@ -4,7 +4,7 @@ import { Dayjs } from "dayjs";
 import { DateValidationError, TimeValidationError } from "@mui/x-date-pickers";
 import { FieldChangeHandlerContext } from "@mui/x-date-pickers/internals";
 
-
+/** Хук работы с полем даты и времени */
 function useDateTimeField(
     id: string,
     validators: IDateTimeValidators,

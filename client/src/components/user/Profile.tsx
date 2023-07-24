@@ -1,16 +1,20 @@
 import { useEffect, useState } from 'react';
 
 import * as S from '../../styles/components';
-import { useAuth } from '../../hooks/auth/useAuth';
+import { useAuth } from '../../hooks/contexts/useAuth';
 import { getProfile } from '../../api/users/users-api';
 import { IUser } from '../../ts/interfaces/globals/user';
 import { useNavigate } from 'react-router-dom';
 
+
+/** Профиль пользователя */
 const Profile = () => {
     const navigate = useNavigate();
 
     const { signout } = useAuth();
-    const [user, setUser] = useState<IUser>();
+    const [user, setUser] = useState<IUser>(); // объект информации о пользователе
+
+    /** Функция форматирования даты */
     const formatDate = (date: string): string => (new Date(date).toLocaleString().slice(0, -10));
 
     useEffect(() => {

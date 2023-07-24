@@ -5,16 +5,18 @@ import { ReactComponent as Schedule } from '../../assets/icons/schedule.svg';
 import { ReactComponent as Results } from '../../assets/icons/results.svg';
 import { ReactComponent as Repeats } from '../../assets/icons/repeats.svg';
 
-interface IRecordParametr {
+interface IRecordParametrProps {
     type: 'date' | 'time' | 'datetime' | 'result' | 'repeats';
     value: string;
 }
 
-const RecordParametr = ({ type, value }: IRecordParametr) => {
-
+/** Параметр записи тренеровки */
+const RecordParametr = ({ type, value }: IRecordParametrProps) => {
+    
+    /** Функция форматирования даты */
     const formatDate = (date: string): string => (new Date(date).toLocaleString().slice(0, -10));
+    /** Функция форматирования даты и времени */
     const formatDatetime = (date: string): string => (new Date(date).toLocaleString());
-
 
     return (
         <S.RecordParametr>
